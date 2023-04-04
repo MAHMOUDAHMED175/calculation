@@ -9,14 +9,15 @@ import 'package:flutter/material.dart';
 
 class ViewProduct extends StatelessWidget {
   var searchController = TextEditingController();
-
+//2
+  //222
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(80),
           child: AppBarViewProduct(
-            moneyCount: 52.0,
+            moneyCount: 40,
           )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
