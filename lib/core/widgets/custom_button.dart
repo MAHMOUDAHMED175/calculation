@@ -26,7 +26,9 @@ class CustomButton extends StatelessWidget {
       height: 40,
       child: TextButton(
         onPressed: onPressed,
+
         style: TextButton.styleFrom(
+
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.black, width: 1.0),
@@ -38,6 +40,7 @@ class CustomButton extends StatelessWidget {
                 ),
           ),
         ),
+
         child: Text(
           text,
           maxLines: 4,

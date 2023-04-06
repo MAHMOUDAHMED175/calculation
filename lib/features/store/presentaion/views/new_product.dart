@@ -3,6 +3,7 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
+import 'package:cache_repo/features/store/presentaion/views/view_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/new_product_widgets/app_bar_New_product_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/new_product_widgets/photo_NewProduct_widget.dart';
 import 'package:date_format/date_format.dart';
@@ -19,17 +20,21 @@ class NewProduct extends StatelessWidget {
   var buyPriceController = TextEditingController();
   var countController = TextEditingController();
   var dateController = TextEditingController();
+  var taxController = TextEditingController();
+  var discountController = TextEditingController();
+  var theTotalBeforeTaxController = TextEditingController();
+  var theTotalAfterTaxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
-          child: AppBarNewProduct()) ,
+          child: AppBarNewProduct()),
       body: SingleChildScrollView(
         child: Column(
           children: [
-           
+
             SizedBox(
               height: 20,
             ),
@@ -126,6 +131,50 @@ class NewProduct extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  Text(
+                    "الضريبه", style: Styles.textStyle18,
+                  ),
+                  defaultFormField(
+                    controller: taxController,
+                    type: TextInputType.number,
+                    hintText: "الضريبه",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "الخصم على الفاتوره", style: Styles.textStyle18,
+                  ),
+                  defaultFormField(
+                    controller: discountController,
+                    type: TextInputType.number,
+                    hintText: "الخصم على الفاتوره",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "الاجمالى قبل الضريبه", style: Styles.textStyle18,
+                  ),
+                  defaultFormField(
+                    controller: theTotalBeforeTaxController,
+                    type: TextInputType.number,
+                    hintText: "الاجمالى قبل الضريبه",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "الاجمالى بعد الضريبه", style: Styles.textStyle18,
+                  ),
+                  defaultFormField(
+                    controller: theTotalAfterTaxController,
+                    type: TextInputType.number,
+                    hintText: "الاجمالى بعد الضريبه",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -177,7 +226,9 @@ class NewProduct extends StatelessWidget {
                       TextButton(
                           onPressed: () {
                             //after validate
-                            GoRouter.of(context).push(AppRoute.viewProduct);
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) =>ViewProduct(
+                                )));
                           },
                           style: TextButton.styleFrom(
                               backgroundColor: ColorsApp.defualtColor),

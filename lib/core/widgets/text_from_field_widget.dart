@@ -12,6 +12,7 @@ Widget defaultFormField({
    String? hintText,labelText,
    IconData? prefix,
   Color? fillsColor,
+  bool? readOnly,
 })=>TextFormField(
   textAlign: TextAlign.center,
   keyboardType:type,
@@ -22,6 +23,7 @@ Widget defaultFormField({
   },
   validator: validate,
   onTap: taped,
+  readOnly: readOnly??false,
   decoration: InputDecoration(
     contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
 
