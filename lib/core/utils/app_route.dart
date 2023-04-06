@@ -72,7 +72,7 @@ abstract class AppRoute {
       GoRoute(
         path: sell,
         builder: (BuildContext context, GoRouterState state) {
-          return const Sell();
+          return  Sell();
         },
       ),
       GoRoute(
