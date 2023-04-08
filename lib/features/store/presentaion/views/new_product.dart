@@ -20,10 +20,6 @@ class NewProduct extends StatelessWidget {
   var buyPriceController = TextEditingController();
   var countController = TextEditingController();
   var dateController = TextEditingController();
-  var taxController = TextEditingController();
-  var discountController = TextEditingController();
-  var theTotalBeforeTaxController = TextEditingController();
-  var theTotalAfterTaxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -128,50 +124,8 @@ class NewProduct extends StatelessWidget {
                     type: TextInputType.number,
                     hintText: "الكميه فى المخزن",
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "الضريبه", style: Styles.textStyle18,
-                  ),
-                  defaultFormField(
-                    controller: taxController,
-                    type: TextInputType.number,
-                    hintText: "الضريبه",
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "الخصم على الفاتوره", style: Styles.textStyle18,
-                  ),
-                  defaultFormField(
-                    controller: discountController,
-                    type: TextInputType.number,
-                    hintText: "الخصم على الفاتوره",
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "الاجمالى قبل الضريبه", style: Styles.textStyle18,
-                  ),
-                  defaultFormField(
-                    controller: theTotalBeforeTaxController,
-                    type: TextInputType.number,
-                    hintText: "الاجمالى قبل الضريبه",
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "الاجمالى بعد الضريبه", style: Styles.textStyle18,
-                  ),
-                  defaultFormField(
-                    controller: theTotalAfterTaxController,
-                    type: TextInputType.number,
-                    hintText: "الاجمالى بعد الضريبه",
-                  ),
+
+
                   SizedBox(
                     height: 20,
                   ),

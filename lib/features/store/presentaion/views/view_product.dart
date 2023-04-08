@@ -97,10 +97,6 @@ class ViewProductItem extends StatelessWidget {
   var parcodeProductController = TextEditingController();
   var sellPriceProductController = TextEditingController();
 
-  var taxController = TextEditingController();
-  var discountController = TextEditingController();
-  var theTotalBeforeTaxController = TextEditingController();
-  var theTotalAfterTaxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -110,12 +106,9 @@ class ViewProductItem extends StatelessWidget {
         //5
         //8
 
-        ShowDialogUpdateProduct(
+      ShowDialogUpdateProduct(
           context,
-          discountController: discountController,
-          taxController: taxController,
-          theTotalAfterTaxController: theTotalAfterTaxController,
-          theTotalBeforeTaxController: theTotalBeforeTaxController,
+
           nameProductController: nameProductController,
           buyProductController: buyPriceProductController,
           countProductController: countProductController,
