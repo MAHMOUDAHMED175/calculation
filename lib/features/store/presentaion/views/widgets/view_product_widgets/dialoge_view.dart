@@ -14,10 +14,7 @@ Future ShowDialogUpdateProduct(
   required countProductController,
   required dateProductController,
   required qrCodeProductController,
-  required taxController,
-  required discountController,
-  required theTotalBeforeTaxController,
-  required theTotalAfterTaxController,
+
 }) =>
     showDialog(
         context: context,
@@ -241,127 +238,7 @@ Future ShowDialogUpdateProduct(
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: defaultFormField(
-                                controller: taxController,
-                                type: TextInputType.number,
-                                fillsColor: Colors.grey[200]),
-                          ),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: SizedBox(
-                                width: 80,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text('الضريبه'),
-                                ))),
-                      ],
-                    ),
 
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: defaultFormField(
-                                controller: discountController,
-                                type: TextInputType.number,
-                                fillsColor: Colors.grey[200]),
-                          ),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: SizedBox(
-                                width: 80,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text('الخصم على الفاتوره'),
-                                ))),
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: defaultFormField(
-                                controller: theTotalBeforeTaxController,
-                                type: TextInputType.number,
-                                fillsColor: Colors.grey[200]),
-                          ),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: SizedBox(
-                                width: 80,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text('الاجمالى قبل الضريبه'),
-                                ))),
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: defaultFormField(
-                                controller: theTotalAfterTaxController,
-                                type: TextInputType.number,
-                                fillsColor: Colors.grey[200]),
-                          ),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: ColorsApp.whiteColor),
-                            child: SizedBox(
-                                width: 80,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text('الاجمالى بعد الضريبه'),
-                                ))),
-                      ],
-                    ),
-
-                    //تاريخ انتهاء الصلاحيه
-                    SizedBox(
-                      height: 10,
-                    ),
                     Row(
                       children: [
                         Expanded(

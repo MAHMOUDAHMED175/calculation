@@ -86,21 +86,7 @@ class Sell extends StatelessWidget {
                   builder: (context) {
                     return Theme(
                       data: Theme.of(context).copyWith(dialogBackgroundColor: Colors.teal[100]),
-                      child: AlertDialog(
-                        contentPadding: EdgeInsets.all(0),
-                        content: SingleChildScrollView(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: 450,
-                              maxHeight: MediaQuery.of(context).size.height * 0.8,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: ShowDialogSell2(),
-                            ),
-                          ),
-                        ),
-                      ),
+                      child:  ShowDialogSell2(),
                     );
                   },
                 );
