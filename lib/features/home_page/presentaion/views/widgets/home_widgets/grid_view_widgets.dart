@@ -41,6 +41,14 @@ class GridViewWidget extends StatelessWidget {
               icon: Icons.monetization_on,
               title: 'فاتورة البيع',
             )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.Representatives);
+            },
+            child: SelectCard(
+              icon: Icons.person,
+              title: 'المندوب',
+            )),
       ],
     );
   }
