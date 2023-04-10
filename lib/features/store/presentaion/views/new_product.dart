@@ -3,6 +3,7 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
+import 'package:cache_repo/features/store/presentaion/views/view_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/new_product_widgets/app_bar_New_product_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/new_product_widgets/photo_NewProduct_widget.dart';
 import 'package:date_format/date_format.dart';
@@ -25,11 +26,11 @@ class NewProduct extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
-          child: AppBarNewProduct()) ,
+          child: AppBarNewProduct()),
       body: SingleChildScrollView(
         child: Column(
           children: [
-           
+
             SizedBox(
               height: 20,
             ),
@@ -123,6 +124,8 @@ class NewProduct extends StatelessWidget {
                     type: TextInputType.number,
                     hintText: "الكميه فى المخزن",
                   ),
+
+
                   SizedBox(
                     height: 20,
                   ),
@@ -177,7 +180,9 @@ class NewProduct extends StatelessWidget {
                       TextButton(
                           onPressed: () {
                             //after validate
-                            GoRouter.of(context).push(AppRoute.viewProduct);
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) =>ViewProduct(
+                                )));
                           },
                           style: TextButton.styleFrom(
                               backgroundColor: ColorsApp.defualtColor),

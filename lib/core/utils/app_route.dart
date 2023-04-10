@@ -1,4 +1,3 @@
-import 'package:cache_repo/features/buy/presentaion/views/buy.dart';
 import 'package:cache_repo/features/home_page/presentaion/views/home_page_view.dart';
 import 'package:cache_repo/features/representatives/presentaion/views/new_representatives.dart';
 import 'package:cache_repo/features/representatives/presentaion/views/representatives.dart';
@@ -10,7 +9,7 @@ import 'package:cache_repo/features/store/presentaion/views/store.dart';
 import 'package:cache_repo/features/store/presentaion/views/view_product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../features/buy/presentaion/views/buy.dart';
 import '../../features/splash/presentaion/views/splash_view.dart';
 
 abstract class AppRoute {
@@ -96,13 +95,13 @@ abstract class AppRoute {
       GoRoute(
         path: sell,
         builder: (BuildContext context, GoRouterState state) {
-          return const Sell();
+          return  Sell();
         },
       ),
       GoRoute(
         path: buy,
         builder: (BuildContext context, GoRouterState state) {
-          return const Buy();
+          return  Buy();
         },
       ),
     ],

@@ -25,7 +25,7 @@ class GridViewWidget extends StatelessWidget {
             )),
         InkWell(
             onTap: () {
-              GoRouter.of(context).push(AppRoute.buy);
+              GoRouter.of(context).push(AppRoute.sell);
             },
             child: Center(
               child: SelectCard(
@@ -35,7 +35,7 @@ class GridViewWidget extends StatelessWidget {
             )),
         InkWell(
             onTap: () {
-              GoRouter.of(context).push(AppRoute.sell);
+              GoRouter.of(context).push(AppRoute.buy);
             },
             child: SelectCard(
               icon: Icons.monetization_on,
