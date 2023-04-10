@@ -12,6 +12,7 @@ Widget defaultFormField({
    String? hintText,labelText,
    IconData? prefix,
   Color? fillsColor,
+  EdgeInsets? paddingHeight,
 })=>TextFormField(
   textAlign: TextAlign.center,
   keyboardType:type,
@@ -23,7 +24,7 @@ Widget defaultFormField({
   validator: validate,
   onTap: taped,
   decoration: InputDecoration(
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+    contentPadding:paddingHeight?? EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
 
     hintStyle: TextStyle(
       color: Colors.black, // تغيير لون الـ hint إلى اللون الأزرق
@@ -56,6 +57,7 @@ Widget defaultFormField({
     )
         : null,
     labelText: labelText,
+
     border: const OutlineInputBorder(),
   ),
 );

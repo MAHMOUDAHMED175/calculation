@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import 'dialoge_representative.dart';
 
 class CardRepresentatives extends StatelessWidget {
   CardRepresentatives({Key? key}) : super(key: key);
@@ -150,7 +151,13 @@ class CardRepresentatives extends StatelessWidget {
                             onPressed: () {},
                             child: InkWell(
                               onTap: () {
-                                DialogeRepresentatives();
+                                showDialog(context: context, builder: (context){
+                                  return AlertDialog(
+                                    backgroundColor: Colors.teal[100],
+                                    content: DialogeRepresentatives(),
+                                  ) ;
+                                });
+
                               },
                               child: Row(
                                 children: [
@@ -187,90 +194,3 @@ class CardRepresentatives extends StatelessWidget {
 }
 
 
-
-
-class DialogeRepresentatives extends StatefulWidget {
-  const DialogeRepresentatives({Key? key}) : super(key: key);
-
-  @override
-  State<DialogeRepresentatives> createState() => _DialogeRepresentativesState();
-}
-
-class _DialogeRepresentativesState extends State<DialogeRepresentatives> {
-
-  List<String> options2 = ['اضغط لتحديد مندوب', 'دفعd اجل', 'دفdع كاش'];
-  String? selectedOption2 = 'اضغط لتحديد مندوب';
-
-  @override
-  Widget build(BuildContext context) {
-    return
-        AlertDialog(
-          backgroundColor: ColorsApp.defualtColor,
-          content: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //qr code
-                  Text(
-                    "حذف",
-                    style: Styles.textStyle20,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "رجاء اختيار اسم",
-                    style: Styles.textStyle20,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-
-                  DropdownButton(
-                    value: selectedOption2,
-                    items: options2.map((option2) {
-                      return DropdownMenuItem(
-                        child: Text(option2),
-                        value: option2,
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedOption2 = value.toString();
-                      });
-                    },
-                  ),
-
-                  Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: CustomButton(
-                              backgroundColor: ColorsApp.defualtColor,
-                              textColor: Colors.white,
-                              text: 'الغاء'),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Expanded(
-                        child: CustomButton(
-                            backgroundColor: Colors.red,
-                            textColor: ColorsApp.whiteColor,
-                            text: 'حذف'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-  }
-}
