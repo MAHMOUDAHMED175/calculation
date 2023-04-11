@@ -1,34 +1,32 @@
-import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
-import 'package:cache_repo/features/representatives/presentaion/views/widgets/new_representatives_widgets/app_bar_New_product_widget.dart';
-import 'package:cache_repo/features/representatives/presentaion/views/widgets/new_representatives_widgets/photo_NewProduct_widget.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/widgets/new_suppliers_widgets/app_bar_New_suppliers.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
+class NewSuppliers extends StatelessWidget {
+  NewSuppliers({Key? key}) : super(key: key);
 
-class NewRepresentatives extends StatelessWidget {
-  NewRepresentatives({Key? key}) : super(key: key);
-
-  var nameRepresentativesController = TextEditingController();
+  var nameSuppliersController = TextEditingController();
   var detailsController = TextEditingController();
   var addressPriceController = TextEditingController();
   var phoneController = TextEditingController();
+  var moneyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
-          child: AppBarNewRepresentatives()),
+          child: AppBarNewSuppliers()),
       body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
               height: 20,
             ),
-            PhotoRepresentatives(),
+            Icon(Icons.person_add_alt_1_sharp,size: 80,color: ColorsApp.defualtColor,),
+
             //content NewProuduct for textformfield
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -40,7 +38,7 @@ class NewRepresentatives extends StatelessWidget {
                     style: Styles.textStyle18,
                   ),
                   defaultFormField(
-                    controller: nameRepresentativesController,
+                    controller: nameSuppliersController,
                     type: TextInputType.text,
                     hintText: "محمد على عبدالله",
                   ),
@@ -72,6 +70,18 @@ class NewRepresentatives extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
+                    "المبلغ الباقى للمورد",
+                    style: Styles.textStyle18,
+                  ),
+                  defaultFormField(
+                    controller: moneyController,
+                    type: TextInputType.number,
+                    hintText: "0",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
                     "ملاحظات",
                     style: Styles.textStyle18,
                   ),
@@ -93,8 +103,7 @@ class NewRepresentatives extends StatelessWidget {
                     child: TextFormField(
                       controller: detailsController,
                       decoration: InputDecoration.collapsed(
-                        hintText: 'أضف ملاحظتك هنا...',
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(color: Colors.grey), hintText: '',
                       ),
                       maxLines: 5,
                     ),
@@ -108,13 +117,12 @@ class NewRepresentatives extends StatelessWidget {
                         child: TextButton(
                             onPressed: () {
                               //after validate
-                              GoRouter.of(context)
-                                  .push(AppRoute.viewRepresentatives);
+
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: ColorsApp.defualtColor),
                             child: Text(
-                              "حفظ بيانات الكاشير",
+                              "حفظ بيانات المورد",
                               style: Styles.textStyle18
                                   .copyWith(color: ColorsApp.whiteColor),
                             )),

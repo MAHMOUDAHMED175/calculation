@@ -1,5 +1,5 @@
 
-import 'package:cache_repo/core/utils/app_route.dart';
+import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';

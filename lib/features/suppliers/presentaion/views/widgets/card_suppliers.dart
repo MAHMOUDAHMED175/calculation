@@ -2,11 +2,12 @@ import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../core/utils/colors.dart';
+import 'dialoge_suppliers.dart';
 
-class CardStore extends StatelessWidget {
-  CardStore({Key? key}) : super(key: key);
+class CardSuppliers extends StatelessWidget {
+  CardSuppliers({Key? key}) : super(key: key);
+
 
 
   @override
@@ -20,7 +21,7 @@ class CardStore extends StatelessWidget {
             width: double.infinity,
             child: Column(
               children: [
-                Icon(Icons.home, size: 50.0, color: ColorsApp.defualtColor),
+                Icon(Icons.person_pin_outlined,size: 80,color: ColorsApp.defualtColor,),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
@@ -35,16 +36,16 @@ class CardStore extends StatelessWidget {
                             onPressed: () {},
                             child: InkWell(
                               onTap: () {
-                                GoRouter.of(context).push(AppRoute.newProduct);
+                                GoRouter.of(context).push(AppRoute.newSuppliers);
                               },
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'اضافة منتج جديد',
+                                      'اضافة مورد جديد',
                                       textDirection: TextDirection.rtl,
-                                      style: Styles.textStyle20.copyWith(
-                                          fontSize: 20, color: Colors.white),
+                                      style: Styles.textStyle18.copyWith(
+                                          fontSize: 16, color: Colors.white),
                                     ),
                                   ),
                                   Padding(
@@ -73,17 +74,56 @@ class CardStore extends StatelessWidget {
                             child: InkWell(
                               onTap: () {
                                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>NewProduct()));
-                                GoRouter.of(context).push(AppRoute.viewProduct);
+                                GoRouter.of(context).push(AppRoute.moneySuppliers);
 
                               },
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'عرض المنتجات',
+                                      "المبالغ المتبقيه للموردين",
                                       textDirection: TextDirection.rtl,
-                                      style: Styles.textStyle20.copyWith(
-                                          fontSize: 20, color: Colors.white),
+                                      style: Styles.textStyle14.copyWith(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(
+                                      Icons.monetization_on_outlined,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: ColorsApp.buttonColor),
+                            onPressed: () {},
+                            child: InkWell(
+                              onTap: () {
+                                // Navigator.push(context, MaterialPageRoute(builder: (context)=>NewProduct()));
+                                GoRouter.of(context).push(AppRoute.viewSuppliers);
+
+                              },
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'عرض الموردين الحاليين',
+                                      textDirection: TextDirection.rtl,
+                                      style: Styles.textStyle14.copyWith(
+                                          fontSize: 16, color: Colors.white),
                                     ),
                                   ),
                                   Padding(
@@ -111,23 +151,28 @@ class CardStore extends StatelessWidget {
                             onPressed: () {},
                             child: InkWell(
                               onTap: () {
-                                GoRouter.of(context)
-                                    .push(AppRoute.countProduct);
+                                showDialog(context: context, builder: (context){
+                                  return AlertDialog(
+                                    backgroundColor: Colors.tealAccent[100],
+                                    content: DialogeSuppliers(),
+                                  ) ;
+                                });
+
                               },
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'جرد المخزن بالكميه',
+                                     "حذف مورد حالى",
                                       textDirection: TextDirection.rtl,
                                       style: Styles.textStyle20.copyWith(
-                                          fontSize: 20, color: Colors.white),
+                                          fontSize: 16, color: Colors.white),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Icon(
-                                      Icons.countertops_outlined,
+                                      Icons.delete,
                                       color: Colors.white,
                                       size: 50,
                                     ),
@@ -144,5 +189,8 @@ class CardStore extends StatelessWidget {
           ),
         ));
   }
+
+
 }
+
 

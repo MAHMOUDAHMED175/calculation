@@ -3,8 +3,10 @@ import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
-import 'package:cache_repo/features/representatives/presentaion/views/widgets/view_product_widgets/app_bar_view_representative_widget.dart';
+import 'package:cache_repo/features/representatives/presentaion/views/widgets/view_representatives_widgets/app_bar_view_representative_widget.dart';
 import 'package:flutter/material.dart';
+
+
 
 class ViewRepresentatives extends StatelessWidget {
   var searchController = TextEditingController();
