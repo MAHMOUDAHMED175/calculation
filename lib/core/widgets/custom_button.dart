@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
 
         child: Text(
           text,
-          maxLines: 4,
+          maxLines: 1,
           style: Styles.textStyle14.copyWith(
             color: textColor,
             fontWeight: FontWeight.w600,
