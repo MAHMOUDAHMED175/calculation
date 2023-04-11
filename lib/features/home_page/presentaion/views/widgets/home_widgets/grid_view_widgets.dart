@@ -1,4 +1,4 @@
-import 'package:cache_repo/core/utils/app_route.dart';
+import 'package:cache_repo/confg/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,6 +48,14 @@ class GridViewWidget extends StatelessWidget {
             child: SelectCard(
               icon: Icons.person,
               title: 'المندوب',
+            )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.Supplier);
+            },
+            child: SelectCard(
+              icon: Icons.person_pin_sharp,
+              title: 'الموردين',
             )),
       ],
     );

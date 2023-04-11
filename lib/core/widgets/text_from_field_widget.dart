@@ -13,6 +13,7 @@ Widget defaultFormField({
    IconData? prefix,
   Color? fillsColor,
   bool? readOnly,
+  BorderRadius? border,
 })=>TextFormField(
   textAlign: TextAlign.center,
   keyboardType:type,
@@ -28,7 +29,8 @@ Widget defaultFormField({
     contentPadding:EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
 
     hintStyle: TextStyle(
-      color: Colors.black, // تغيير لون الـ hint إلى اللون الأزرق
+      color: Colors.black.withOpacity(0.4),
+      // تغيير لون الـ hint إلى اللون الأزرق
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
@@ -36,7 +38,7 @@ Widget defaultFormField({
     ),
     enabledBorder: OutlineInputBorder(
 
-      borderRadius: BorderRadius.only(
+      borderRadius: border??BorderRadius.only(
           topLeft: Radius.circular(35),
           bottomLeft: Radius.circular(35),
 

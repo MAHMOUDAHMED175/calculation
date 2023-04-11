@@ -7,21 +7,31 @@ import 'package:cache_repo/features/store/presentaion/views/count_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/new_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/store.dart';
 import 'package:cache_repo/features/store/presentaion/views/view_product.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/money_suppliers.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/new_suppliers.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/suppliers.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/view_payment_suppliers.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views/view_suppliers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/buy/presentaion/views/buy.dart';
-import '../../features/splash/presentaion/views/splash_view.dart';
+import '../features/buy/presentaion/views/buy.dart';
+import '../features/splash/presentaion/views/splash_view.dart';
 
 abstract class AppRoute {
   static const String homePage = '/homePage';
   //store
   static const String store = '/Store';
   static const String newProduct = '/NewProduct';
+  static const String newSuppliers = '/NewSuppliers';
   static const String newRepresentatives = '/newRepresentatives';
+  static const String moneySuppliers = '/moneySuppliers';
   static const String viewProduct = '/ViewProduct';
+  static const String viewSuppliers = '/ViewSuppliers';
+  static const String viewPaymentSuppliers = '/ViewPaymentSuppliers';
   static const String viewRepresentatives = '/ViewRepresentatives';
   static const String countProduct = '/CountProduct';
   static const String Representatives = '/Representatives';
+  static const String Supplier = '/Supplier';
 
 
 
@@ -63,9 +73,33 @@ abstract class AppRoute {
         },
       ),
       GoRoute(
+        path: moneySuppliers,
+        builder: (BuildContext context, GoRouterState state) {
+          return  MoneySuppliers();
+        },
+      ),
+      GoRoute(
+        path: newSuppliers,
+        builder: (BuildContext context, GoRouterState state) {
+          return  NewSuppliers();
+        },
+      ),
+      GoRoute(
         path: viewProduct,
         builder: (BuildContext context, GoRouterState state) {
           return  ViewProduct();
+        },
+      ),
+      GoRoute(
+        path: viewPaymentSuppliers,
+        builder: (BuildContext context, GoRouterState state) {
+          return  ViewPaymentSuppliers();
+        },
+      ),
+      GoRoute(
+        path: viewSuppliers,
+        builder: (BuildContext context, GoRouterState state) {
+          return  ViewSuppliers();
         },
       ),
       GoRoute(
@@ -84,6 +118,12 @@ abstract class AppRoute {
         path: Representatives,
         builder: (BuildContext context, GoRouterState state) {
           return  Representative();
+        },
+      ),
+      GoRoute(
+        path: Supplier,
+        builder: (BuildContext context, GoRouterState state) {
+          return  Suppliers();
         },
       ),
 

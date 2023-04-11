@@ -3,7 +3,7 @@ import 'package:cache_repo/features/splash/presentaion/views/widgets/sliding_ani
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utils/app_route.dart';
+import '../../../../../confg/app_route.dart';
 import '../../../../../core/utils/constants.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -72,7 +72,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         // Get.to(() => const HomePage(),
         //     duration: KtransationDuration, transition: Transition.fade);
 
-       GoRouter.of(context).push(AppRoute.homePage);
+       GoRouter.of(context).pushReplacement(AppRoute.homePage);
 
 
       },

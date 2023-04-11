@@ -5,6 +5,7 @@ import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/app_bar_view_product_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/dialoge_view.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 
 class ViewProduct extends StatelessWidget {

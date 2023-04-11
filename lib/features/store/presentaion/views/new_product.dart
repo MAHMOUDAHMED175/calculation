@@ -1,4 +1,4 @@
-import 'package:cache_repo/core/utils/app_route.dart';
+import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_app_par.dart';

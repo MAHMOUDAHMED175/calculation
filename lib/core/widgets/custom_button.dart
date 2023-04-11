@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
 
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black, width: 1.0),
+            side: BorderSide(color: Colors.grey, width: 1.0),
             // إضافة حدود سوداء بسمك 2 بكسل
 
             borderRadius: borderRadius ??
@@ -46,7 +46,7 @@ class CustomButton extends StatelessWidget {
           maxLines: 4,
           style: Styles.textStyle14.copyWith(
             color: textColor,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w600,
             fontSize: fontSize,
           ),
         ),
