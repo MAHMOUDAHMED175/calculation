@@ -57,6 +57,14 @@ class GridViewWidget extends StatelessWidget {
               icon: Icons.person_pin_sharp,
               title: 'الموردين',
             )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.Client);
+            },
+            child: SelectCard(
+              icon: Icons.person_pin_sharp,
+              title: "العملاء",
+            )),
       ],
     );
   }

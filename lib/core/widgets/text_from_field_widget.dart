@@ -8,6 +8,7 @@ Widget defaultFormField({
   String? Function(String?)? validate,
   bool isPassword=false,
   String? Function(String?)? submit,
+  String? Function(String?)? change,
   IconData? suffixIcon,
    String? hintText,labelText,
    IconData? prefix,
@@ -23,6 +24,7 @@ Widget defaultFormField({
     submit!(s);
   },
   validator: validate,
+  onChanged: change,
   onTap: taped,
   readOnly: readOnly??false,
   decoration: InputDecoration(
