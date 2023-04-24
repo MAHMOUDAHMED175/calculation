@@ -1,12 +1,10 @@
-import 'dart:convert';
-
+import 'dart:io';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/app_bar_view_product_widget.dart';
-import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/dialoge_view.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:date_format/date_format.dart';
@@ -21,7 +19,6 @@ class ViewProduct extends StatelessWidget {
     return BlocConsumer<StoreCubit, StoreStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var listProduct = StoreCubit.get(context).product;
         return Scaffold(
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(80),
@@ -42,11 +39,11 @@ class ViewProduct extends StatelessWidget {
                             prefix: Icons.search,
                             submit: (textOfSearch) {
                               StoreCubit.get(context)
-                                  .searchStoreView(text: textOfSearch!);
+                                  .searchProductView(text: textOfSearch!);
                             },
                             change: (textOfSearch) {
                               StoreCubit.get(context)
-                                  .searchStoreView(text: textOfSearch!);
+                                  .searchProductView(text: textOfSearch!);
                             },
                             type: TextInputType.text,
                             hintText: 'ابحث باسم المنتج'),
@@ -95,14 +92,15 @@ class ViewProduct extends StatelessWidget {
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) => ViewProductItem(
-                      products: StoreCubit.get(context).searchp.isEmpty
+                      index:index,
+                      products: StoreCubit.get(context).searchStoreViewProduct.isEmpty
                           ? StoreCubit.get(context).product[index]
-                          : StoreCubit.get(context).searchp[index],
+                          : StoreCubit.get(context).searchStoreViewProduct[index],
                     ),
                     separatorBuilder: (context, index) => myDivider(),
-                    itemCount: StoreCubit.get(context).searchp.isEmpty
+                    itemCount: StoreCubit.get(context).searchStoreViewProduct.isEmpty
                         ? StoreCubit.get(context).product.length
-                        : StoreCubit.get(context).searchp.length,
+                        : StoreCubit.get(context).searchStoreViewProduct.length,
                   ),
                 ),
               ],
@@ -123,14 +121,20 @@ class ViewProductItem extends StatelessWidget {
   var parcodeProductController = TextEditingController();
   var sellPriceProductController = TextEditingController();
 
-  ViewProductItem({required this.products});
+  ViewProductItem({required this.products,required this.index});
 
   Map products;
+  int index;
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StoreCubit, StoreStates>(
       builder: (BuildContext context, state) {
+        File imageFile = File(products['image']);
+
         nameProductController.text = products['productName'].toString();
         buyPriceProductController.text = products['productBuy'].toString();
         countProductController.text = products['productCount'].toString();
@@ -148,8 +152,8 @@ class ViewProductItem extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (
-                  context,
-                ) {
+                    context,
+                    ) {
                   return Dialog(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -212,7 +216,7 @@ class ViewProductItem extends StatelessWidget {
                                         color: ColorsApp.whiteColor),
                                     child: defaultFormField(
                                         controller: nameProductController,
-                                        type: TextInputType.number,
+                                        type: TextInputType.text,
                                         fillsColor: Colors.grey[200]),
                                   ),
                                 ),
@@ -244,7 +248,7 @@ class ViewProductItem extends StatelessWidget {
                                         color: ColorsApp.whiteColor),
                                     child: defaultFormField(
                                         controller: detailsProductController,
-                                        type: TextInputType.number,
+                                        type: TextInputType.text,
                                         fillsColor: Colors.grey[200]),
                                   ),
                                 ),
@@ -377,7 +381,7 @@ class ViewProductItem extends StatelessWidget {
                                             initialDate: DateTime.now(),
                                             firstDate: DateTime.now(),
                                             lastDate:
-                                                DateTime.parse("2230-12-12"),
+                                            DateTime.parse("2230-12-12"),
                                           ).then((value) {
                                             dateProductController.text =
                                                 formatDate(value!,
@@ -418,7 +422,7 @@ class ViewProductItem extends StatelessWidget {
                                   child: CustomButton(
                                       onPressed: () {
                                         StoreCubit.get(context)
-                                            .DeleteData(products['id']);
+                                            .DeleteData(id1:products['id']);
                                         Navigator.pop(context);
                                       },
                                       backgroundColor: Colors.red,
@@ -521,17 +525,13 @@ class ViewProductItem extends StatelessWidget {
                   child: CircleAvatar(
                     radius: MediaQuery.of(context).size.width * 0.08,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    child: Center(
-                      child:  Image.asset('assets/images/money.jpg')
-                    ),
-                    // Center(
-                    //   child: StoreCubit.get(context).photoBytes == null ? Image.asset('assets/images/money.jpg') : Image
-                    //       .memory(products['imageProduct']),
-                    // ),
 
-                ),
-                  )
-        ],
+                      child: products['image']!=null ? Image.file(imageFile):Image.asset('assets/images/no_image.png'),
+
+
+                  ),
+                )
+              ],
             ),
           ),
         );

@@ -10,21 +10,19 @@ Widget headerSell() => Container(
     child: Row(
       children: [
         Expanded(
-            flex: 2,
             child: Text(
               'الاجمالى',
               style: Styles.textStyle15,
             )),
         Expanded(
-            flex: 2,
             child: Text(
               'الكميه ',
               style: Styles.textStyle15,
             )),
-        Expanded(flex: 2, child: Text('السعر', style: Styles.textStyle15)),
-        Expanded(flex: 3, child: Text('المنتج', style: Styles.textStyle15)),
+        Expanded( child: Text('السعر', style: Styles.textStyle15)),
+        Expanded( child: Text('المنتج', style: Styles.textStyle15)),
         Expanded(
-            flex: 2, child: Text('صوره المنتج', style: Styles.textStyle15)),
+            child: Text('صوره المنتج', style: Styles.textStyle15)),
       ],
     ),
   ),

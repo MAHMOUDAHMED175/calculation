@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:cache_repo/features/store/presentaion/views/widgets/new_product_widgets/scane_photo.dart';
 import 'package:flutter/material.dart';
 
 class PhotoProduct extends StatelessWidget {
@@ -10,7 +8,7 @@ class PhotoProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return            InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageScreen()));
+        // Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageScreen()));
       },
       child:  Stack(
       alignment: Alignment.bottomRight,
