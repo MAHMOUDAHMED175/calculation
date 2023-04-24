@@ -25,9 +25,8 @@ class NewProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StoreCubit,StoreStates>(
+    return BlocBuilder<StoreCubit, StoreStates>(
         builder: (context, state) {
-          StoreCubit cubit = StoreCubit.get(context);
           return Scaffold(
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(60),
@@ -39,10 +38,11 @@ class NewProduct extends StatelessWidget {
                     height: 20,
                   ),
                   InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageScreen()));
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Images()));
                       },
-                      child:  Stack(
+                      child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
                           CircleAvatar(
@@ -51,8 +51,8 @@ class NewProduct extends StatelessWidget {
                                 .of(context)
                                 .scaffoldBackgroundColor,
                             child: Center(
-                              child: StoreCubit.get(context).photoBytes == null ? Text('لم يتم اختيار صور بعد') : Image
-                                  .memory(StoreCubit.get(context).photoBytes!),
+                              child: StoreCubit.get(context).imagesFile == null ? Text('لم يتم اختيار صور بعد') : Image
+                                  .file(StoreCubit.get(context).imagesFile!),
                             ),
                           ),
                           CircleAvatar(
@@ -73,6 +73,26 @@ class NewProduct extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
+                          // SizedBox(
+                          //   child: GridView.builder(
+                          //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          //           crossAxisCount: 3,
+                          //         childAspectRatio: 3/2,
+                          //         crossAxisSpacing: 10,
+                          //         mainAxisSpacing: 10
+                          //       ),
+                          //     itemCount:StoreCubit.get(context).item.length,
+                          //     itemBuilder: (context,index)=>GridTile(
+                          //       child: Image.file(
+                          //           StoreCubit.get(context).item[index].image,
+                          //           fit:BoxFit.cover),
+                          //     ),
+                          //
+                          //
+                          //
+                          //   ),
+                          //   height: 200,
+                          // ),
                           const SizedBox(
                             height: 50,
                           ),
@@ -81,7 +101,7 @@ class NewProduct extends StatelessWidget {
                               Expanded(
                                 child: defaultFormField(
                                     controller: parcodeController,
-                                    type: TextInputType.text,
+                                    type: TextInputType.number,
                                     hintText: 'الباركود',
                                     validate: (value) {
                                       if (value!.isEmpty) {
@@ -95,7 +115,10 @@ class NewProduct extends StatelessWidget {
                               IconButton(
                                 onPressed: () {
                                   // اضافة كود مسح الباركود هنا
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>QrCodes(parcodeController:parcodeController)));
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) =>
+                                          QrCodes(
+                                              parcodeController: parcodeController)));
                                 },
                                 icon: Icon(Icons.qr_code_2),
                               ),
@@ -110,7 +133,7 @@ class NewProduct extends StatelessWidget {
                           ),
                           defaultFormField(
                               controller: nameProductController,
-                              type:  TextInputType.text,
+                              type: TextInputType.text,
                               hintText: 'اسم المنتج تفصيلى',
                               validate: (value) {
                                 if (value!.isEmpty) {
@@ -126,7 +149,7 @@ class NewProduct extends StatelessWidget {
                           ),
                           defaultFormField(
                             controller: detailsController,
-                            type:  TextInputType.text,
+                            type: TextInputType.text,
                             hintText: 'ملاحظات على المنتج',
                           ),
                           SizedBox(
@@ -138,7 +161,7 @@ class NewProduct extends StatelessWidget {
                           ),
                           defaultFormField(
                               controller: sellPriceController,
-                              type:  TextInputType.text,
+                              type: TextInputType.number,
                               hintText: "سعر الشراء",
                               validate: (value) {
                                 if (value!.isEmpty) {
@@ -154,7 +177,7 @@ class NewProduct extends StatelessWidget {
                           ),
                           defaultFormField(
                               controller: buyPriceController,
-                              type:  TextInputType.text,
+                              type: TextInputType.number,
                               hintText: "سعر البيع",
                               validate: (value) {
                                 if (value!.isEmpty) {
@@ -170,7 +193,7 @@ class NewProduct extends StatelessWidget {
                           ),
                           defaultFormField(
                               controller: countController,
-                              type:  TextInputType.text,
+                              type: TextInputType.number,
                               hintText: "الكميه فى المخزن",
                               validate: (value) {
                                 if (value!.isEmpty) {
@@ -184,30 +207,30 @@ class NewProduct extends StatelessWidget {
                             children: [
                               Expanded(
                                   child: TextFormField(
-                                onTap: () {
-                                  showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime.parse("2230-12-12"),
-                                  ).then((value) {
-                                    dateController.text = formatDate(
-                                        value!, [yyyy, '-', mm, '-', dd]);
-                                  });
-                                },
-                                decoration: InputDecoration(
-                                    fillColor: ColorsApp.whiteColor,
-                                    filled: true,
-                                    hintText: 'اضغط لتحديد التاريخ',
-                                    border: OutlineInputBorder()),
-                                controller: dateController,
-                                keyboardType: TextInputType.datetime,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return ' Add ProudctDate';
-                                  }
-                                },
-                              )),
+                                    onTap: () {
+                                      showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime.now(),
+                                        lastDate: DateTime.parse("2230-12-12"),
+                                      ).then((value) {
+                                        dateController.text = formatDate(
+                                            value!, [yyyy, '-', mm, '-', dd]);
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                        fillColor: ColorsApp.whiteColor,
+                                        filled: true,
+                                        hintText: 'اضغط لتحديد التاريخ',
+                                        border: OutlineInputBorder()),
+                                    controller: dateController,
+                                    keyboardType: TextInputType.datetime,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return ' Add ProudctDate';
+                                      }
+                                    },
+                                  )),
                               SizedBox(
                                 width: 4,
                               ),
@@ -227,7 +250,7 @@ class NewProduct extends StatelessWidget {
                                   onPressed: () {},
                                   style: TextButton.styleFrom(
                                       backgroundColor:
-                                          ColorsApp.defualtColor),
+                                      ColorsApp.defualtColor),
                                   child: Text(
                                     'طباعة الكود',
                                     style: Styles.textStyle18.copyWith(
@@ -238,16 +261,17 @@ class NewProduct extends StatelessWidget {
                                   onPressed: () {
                                     //after validate
                                     if (formKey.currentState!.validate()) {
-                                      cubit.InsertDatabase(
-                                          qrCode: parcodeController.text,
-                                          productName:
-                                          nameProductController.text,
-                                          productDetails:
-                                          detailsController.text,
-                                          productBuy: buyPriceController.text,
-                                          productSell: sellPriceController.text,
-                                          productCount: countController.text,
-                                          productDate: dateController.text,
+                                      StoreCubit.get(context).InsertDatabase(
+                                        image: StoreCubit.get(context).savePathImage!,
+                                        qrCode: parcodeController.text,
+                                        productName:
+                                        nameProductController.text,
+                                        productDetails:
+                                        detailsController.text,
+                                        productBuy: buyPriceController.text,
+                                        productSell: sellPriceController.text,
+                                        productCount: countController.text,
+                                        productDate: dateController.text,
                                       );
                                       Navigator.push(
                                           context,
@@ -255,11 +279,10 @@ class NewProduct extends StatelessWidget {
                                               builder: (context) =>
                                                   ViewProduct()));
                                     }
-
                                   },
                                   style: TextButton.styleFrom(
                                       backgroundColor:
-                                          ColorsApp.defualtColor),
+                                      ColorsApp.defualtColor),
                                   child: Text(
                                     'تسجيل منتج جديد',
                                     style: Styles.textStyle18.copyWith(

@@ -36,11 +36,11 @@ class CountProduct extends StatelessWidget {
                     type: TextInputType.number,
                     submit: (textOfSearch) {
                       StoreCubit.get(context)
-                          .searchProduct(text: textOfSearch!);
+                          .searchProductCount(text: textOfSearch!);
                     },
                     change: (textOfSearch) {
                       StoreCubit.get(context)
-                          .searchProduct(text: textOfSearch!);
+                          .searchProductCount(text: textOfSearch!);
                     },
                     hintText: 'اضغط لتحديد الكميه'),
               ),
@@ -70,15 +70,15 @@ class CountProduct extends StatelessWidget {
                 child: ListView.separated(
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) => CountProductItem(
-                    product: StoreCubit.get(context).searchp.isEmpty
+                    product: StoreCubit.get(context).searchCount.isEmpty
                         ? StoreCubit.get(context).product[index]
-                        : StoreCubit.get(context).searchp[index],
+                        : StoreCubit.get(context).searchCount[index],
                     place: index,
                   ),
                   separatorBuilder: (context, index) => myDivider(),
-                  itemCount: StoreCubit.get(context).searchp.isEmpty
+                  itemCount: StoreCubit.get(context).searchCount.isEmpty
                       ? StoreCubit.get(context).product.length
-                      : StoreCubit.get(context).searchp.length,
+                      : StoreCubit.get(context).searchCount.length,
                 ),
               ),
             ],

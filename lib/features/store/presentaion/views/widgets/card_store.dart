@@ -2,7 +2,6 @@ import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../core/utils/colors.dart';
 
 class CardStore extends StatelessWidget {
@@ -72,7 +71,7 @@ class CardStore extends StatelessWidget {
                             onPressed: () {},
                             child: InkWell(
                               onTap: () {
-                                // Navigator.push(context, MaterialPageRoute(builder: (context)=>NewProduct()));
+                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>NewProduct()));
                                 GoRouter.of(context).push(AppRoute.viewProduct);
 
                               },
