@@ -60,6 +60,8 @@ class deleteItemSellProductState extends StoreStates{}
 
 ///addProductToSellState
 class addProductToSellState extends StoreStates{}
+class addProductFloatingActionButton extends StoreStates{}
+class addProductFloatingActionButton2 extends StoreStates{}
 ///addProductToSellState
 
 

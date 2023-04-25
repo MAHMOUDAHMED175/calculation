@@ -225,11 +225,11 @@ class NewProduct extends StatelessWidget {
                                         border: OutlineInputBorder()),
                                     controller: dateController,
                                     keyboardType: TextInputType.datetime,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return ' Add ProudctDate';
-                                      }
-                                    },
+                                    // validator: (value) {
+                                    //   if (value!.isEmpty) {
+                                    //     return ' Add ProudctDate';
+                                    //   }
+                                    // },
                                   )),
                               SizedBox(
                                 width: 4,
@@ -262,7 +262,7 @@ class NewProduct extends StatelessWidget {
                                     //after validate
                                     if (formKey.currentState!.validate()) {
                                       StoreCubit.get(context).InsertDatabase(
-                                        image: StoreCubit.get(context).savePathImage!,
+                                        image: StoreCubit.get(context).savePathImage,
                                         qrCode: parcodeController.text,
                                         productName:
                                         nameProductController.text,
