@@ -113,7 +113,7 @@ class StoreCubit extends Cubit<StoreStates> {
     final saveImagepath = await imagesFile!.copy('${apDir.path}/$fileName');
     addImagePlace(saveImagepath);
   }
-  void addImagePlace(File image)  {
+  void addImagePlace(File image){
     savePathImage = image.path;
     // print(image.path);
   }
@@ -151,7 +151,7 @@ class StoreCubit extends Cubit<StoreStates> {
   }
   Future InsertDatabase({
     required String qrCode,
-    required String image,
+    String? image,
     required String productName,
     required String productDetails,
     required String productBuy,
@@ -322,6 +322,21 @@ class StoreCubit extends Cubit<StoreStates> {
         }
         addedProducts.remove(productName); // حذف اسم المنتج من الـ Set
         emit(deleteItemSellProductState());
+
+        break;
+      }
+    }    for (int i = 0; i < searchSellProductItem.length; i++) {
+      if (searchSellProductItem[i]['productName'] == itemId) {
+        String productName = searchSellProductItem[i]['productName'];
+        int productCount = int.parse(searchSellProductItem[i]['productCount']);
+        int productSell = int.parse(searchSellProductItem[i]['productSell']);
+        searchSellProductItem.removeAt(i);
+        if (countallPriceSellFloatingActionButton > 0) {
+          countallPriceSellFloatingActionButton -= productCount *
+              productSell; // تحديث قيمة المتغير countallPriceSellFloatingActionButton
+        }
+        addedProducts.remove(productName); // حذف اسم المنتج من الـ Set
+        emit(deleteItemSellProductState());
         break;
       }
     }
@@ -339,7 +354,7 @@ class StoreCubit extends Cubit<StoreStates> {
 
 
 
-  ///FloatingActionButton
+  ///addProductFloatingActionButton
   int countallPriceSellFloatingActionButton = 0;
   Set<String> addedProducts = {}; // Set to keep track of added product names
   void allPriceSellFloatingActionButton() {
@@ -350,11 +365,32 @@ class StoreCubit extends Cubit<StoreStates> {
         countallPriceSellFloatingActionButton +=
             int.parse(sellProduct[i]['productCount']) *
                 int.parse(sellProduct[i]['productSell']);
-        addedProducts.add(productName); // Add product name to set
+        addedProducts.add(productName);
+        emit(addProductFloatingActionButton());
+        // Add product name to set
+      }
+    }
+    for (int i = 0; i < searchSellProductItem.length; i++) {
+      String productName = searchSellProductItem[i]['productName'];
+      if (!addedProducts.contains(productName)) {
+        // Check if product has already been added
+        countallPriceSellFloatingActionButton +=
+            int.parse(searchSellProductItem[i]['productCount']) *
+                int.parse(searchSellProductItem[i]['productSell']);
+        addedProducts.add(productName);
+        emit(addProductFloatingActionButton2());
+
+        // Add product name to set
       }
     }
     print(countallPriceSellFloatingActionButton);
   }
+  ///addProductFloatingActionButton
+
+
+
+
+  ///paymentFloatingActiomButton
   int remainingPayment = 0;
   void remainingPaymentFloatingActionButton(String paymented) {
     for (int i = 0; i < sellProduct.length; i++) {
@@ -367,7 +403,7 @@ class StoreCubit extends Cubit<StoreStates> {
     }
     emit(remainingPaymentFloatingActionButtonState());
   }
-///FloatingActionButton
+///paymentFloatingActiomButton
 
 
 
@@ -387,3 +423,68 @@ class StoreCubit extends Cubit<StoreStates> {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

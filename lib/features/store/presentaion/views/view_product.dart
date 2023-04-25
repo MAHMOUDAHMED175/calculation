@@ -522,11 +522,10 @@ class ViewProductItem extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 2,
-                  child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.width * 0.08,
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
-                      child: products['image']!=null ? Image.file(imageFile):Image.asset('assets/images/no_image.png'),
+                  child: Container(
+                    child: products['image']==''? CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:
+                    AssetImage('assets/images/no_image.png')):CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:FileImage(imageFile),
+                    )
 
 
                   ),
