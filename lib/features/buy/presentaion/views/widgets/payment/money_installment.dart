@@ -3,8 +3,8 @@ import 'package:cache_repo/core/utils/styles.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/text_from_field_widget.dart';
+import '../../../../../../core/widgets/custom_button.dart';
+import '../../../../../../core/widgets/text_from_field_widget.dart';
 
 class MoneyInstallment extends StatefulWidget {
   MoneyInstallment({Key? key}) : super(key: key);
@@ -151,7 +151,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                         controller: financialInterestRateController,
                         hintText: '0',
                         fillsColor: Colors.white,
-
                         type: TextInputType.number),
                   ),
                   SizedBox(
@@ -170,7 +169,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                         controller: profitRatioController,
                         hintText: '0',
                         fillsColor: Colors.white,
-
                         type: TextInputType.number),
                   ),
                   SizedBox(
@@ -251,7 +249,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                         controller: numberOfMonthsController,
                         hintText: '0',
                         fillsColor: Colors.white,
-
                         type: TextInputType.number),
                   ),
                   SizedBox(
@@ -270,7 +267,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                         controller: numberOfWeeksController,
                         hintText: '0',
                         fillsColor: Colors.white,
-
                         type: TextInputType.number),
                   ),
                   SizedBox(
@@ -284,7 +280,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
               ),
 
         //months
-
 
         SizedBox(
           height: 20,
@@ -311,34 +306,36 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
           children: [
             Expanded(
                 child: TextFormField(
-                  onTap: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime.parse("2230-12-12"),
-                    ).then((value) {
-                      dateController.text =
-                          formatDate(
-                              value!, [yyyy, '-', mm, '-', dd]);
-                    });
-                  },
-                  decoration: InputDecoration(
-                      fillColor: ColorsApp.whiteColor,
-                      filled: true,
-                      hintText: 'اضغط لتحديد التاريخ',
-                      border: OutlineInputBorder()),
-                  controller: dateController,
-                  keyboardType: TextInputType.datetime,
-                )),
-
+              onTap: () {
+                showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.parse("2230-12-12"),
+                ).then((value) {
+                  dateController.text =
+                      formatDate(value!, [yyyy, '-', mm, '-', dd]);
+                });
+              },
+              decoration: InputDecoration(
+                  fillColor: ColorsApp.whiteColor,
+                  filled: true,
+                  hintText: 'اضغط لتحديد التاريخ',
+                  border: OutlineInputBorder()),
+              controller: dateController,
+              keyboardType: TextInputType.datetime,
+            )),
             SizedBox(
               width: 20,
             ),
             SizedBox(
               width: 90,
               height: 60,
-              child: Text('تاريخ استحقاق اول قسط',style: Styles.textStyle14,maxLines: 2,),
+              child: Text(
+                'تاريخ استحقاق اول قسط',
+                style: Styles.textStyle14,
+                maxLines: 2,
+              ),
             )
           ],
         ),
@@ -354,7 +351,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                   controller: nameController,
                   hintText: '0',
                   fillsColor: Colors.white,
-
                   type: TextInputType.number),
             ),
             SizedBox(
@@ -378,7 +374,6 @@ class _MoneyInstallmentState extends State<MoneyInstallment> {
                   controller: phoneController,
                   hintText: '0',
                   fillsColor: Colors.white,
-
                   type: TextInputType.number),
             ),
             SizedBox(

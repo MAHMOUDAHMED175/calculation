@@ -2,17 +2,17 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/features/sell/presentaion/views/widgets/app_bar_sell.dart';
 import 'package:cache_repo/features/sell/presentaion/views/widgets/date_expire_sell.dart';
-import 'package:cache_repo/features/sell/presentaion/views/widgets/gird_sell.dart';
+import 'package:cache_repo/features/sell/presentaion/views/widgets/grid_sell_product/gird_sell.dart';
 import 'package:cache_repo/features/sell/presentaion/views/widgets/headerSell.dart';
+import 'package:cache_repo/features/sell/presentaion/views/widgets/payment/show_dialoge_sell_2.dart';
 import 'package:cache_repo/features/sell/presentaion/views/widgets/searchSell.dart';
-import 'package:cache_repo/features/sell/presentaion/views/widgets/show_dialoge_sell_2.dart';
-import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
-import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
+import 'package:cache_repo/features/sell/presentaion/views/widgets/sell_item.dart';
+import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
+import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_state.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/divider.dart';
 
 class Sell extends StatelessWidget {
@@ -26,8 +26,8 @@ class Sell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StoreCubit, StoreStates>(builder: (context, state) {
-      var products = StoreCubit.get(context).sellProduct;
+    return BlocBuilder<SellCubit, SellState>(builder: (context, state) {
+      var products = SellCubit.get(context).sellProduct;
 
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -100,7 +100,7 @@ class Sell extends StatelessWidget {
                 label: Row(
                   children: [
                     Text(
-                      '${StoreCubit.get(context).countallPriceSellFloatingActionButton} جنيه',
+                      '${SellCubit.get(context).countallPriceSellFloatingActionButton} جنيه',
                       style: Styles.textStyle14.copyWith(color: Colors.red),
                     ),
                     SizedBox(
@@ -146,153 +146,23 @@ class Sell extends StatelessWidget {
                 child: ListView.separated(
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) => SellItem(
-                      product: StoreCubit.get(context)
+                      product: SellCubit.get(context)
                               .searchSellProductItem
                               .isEmpty
                           ? products[index]
-                          : StoreCubit.get(context)
-                              .searchSellProductItem[index],
+                          : SellCubit.get(context).searchSellProductItem[index],
                       index: index),
                   separatorBuilder: (context, index) => myDivider(),
-                  itemCount: StoreCubit.get(context).searchSellProductItem.isEmpty
-                      ? products.length
-                      : StoreCubit.get(context).searchSellProductItem.length,
+                  itemCount:
+                      SellCubit.get(context).searchSellProductItem.isEmpty
+                          ? products.length
+                          : SellCubit.get(context).searchSellProductItem.length,
                 ),
               )
             ],
           ),
         ),
       );
-    });
-  }
-}
-
-class SellItem extends StatelessWidget {
-  SellItem({Key? key, required this.product, required this.index})
-      : super(key: key);
-
-  final Map product;
-  int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<StoreCubit, StoreStates>(builder: (context, state) {
-      return InkWell(
-          onTap: () {
-            // showDialog(
-            //     context: context,
-            //     builder: (context) {
-            //   return ShowDialogCounterSell(products: product, index: index,);
-            // });
-          },
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Stack(
-                alignment: Alignment.topLeft,
-                children: [
-
-
-
-                  SizedBox(
-                    height: 120,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 4,
-                          child: CustomButton(
-                            backgroundColor: Colors.white,
-                            textColor: Colors.black,
-                            text:
-                            '${int.parse(product['productCount']) * int.parse(product['productSell'])}',
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.006,
-                        ),
-                        Flexible(
-                          flex: 4,
-                          child: CustomButton(
-                            backgroundColor: Colors.white,
-                            textColor: Colors.black,
-                            text: '${product['productCount']}',
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.006,
-                        ),
-                        Flexible(
-                          flex: 4,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: CustomButton(
-                              backgroundColor: Colors.white,
-                              textColor: Colors.black,
-                              text: product['productSell'],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.006,
-                        ),
-                        Flexible(
-                          flex: 3,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    product['productName'],
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.006,
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.08,
-                            backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                            child: CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.07,
-                              backgroundImage: AssetImage(
-                                'assets/images/money.jpg',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      StoreCubit.get(context).deleteItemSellProduct(
-                          '${StoreCubit.get(context).sellProduct[index]['productName']}');
-                    },
-                    icon: Icon(Icons.delete,color: Colors.red,size: 30,),),
-
-                ],
-              )));
     });
   }
 }

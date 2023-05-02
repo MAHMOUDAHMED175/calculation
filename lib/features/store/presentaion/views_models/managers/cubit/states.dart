@@ -20,6 +20,7 @@ class StoreDeleteDatabaseState extends StoreStates{}
 ///Qr_code
 class controllerQrCodeState extends StoreStates{}
 class scaneQrCodeState extends StoreStates{}
+
 ///Qr_code
 
 
@@ -28,7 +29,7 @@ class scaneQrCodeState extends StoreStates{}
 
 
 ///searchProduct
-class searchProductState extends StoreStates{}
+class searchProductCountState extends StoreStates{}
 class searchStoreViewstate extends StoreStates{}
 class ImagePickerstate extends StoreStates{}
 ///searchProduct
@@ -49,25 +50,12 @@ class takeImageCameraState extends StoreStates{}
 
 
 
-///deleteItemSellProductState
-class deleteItemSellProductState extends StoreStates{}
-///deleteItemSellProductState
+
+///api
+class GetProductTreeLoadingState extends StoreStates{}
+class GetProductTreeSuccessState extends StoreStates{}
+class GetProductTreeErrorState extends StoreStates{}
 
 
+///api
 
-
-
-
-///addProductToSellState
-class addProductToSellState extends StoreStates{}
-class addProductFloatingActionButton extends StoreStates{}
-class addProductFloatingActionButton2 extends StoreStates{}
-///addProductToSellState
-
-
-
-
-
-///FloatingActionButton
-class remainingPaymentFloatingActionButtonState extends StoreStates{}
-///FloatingActionButton
