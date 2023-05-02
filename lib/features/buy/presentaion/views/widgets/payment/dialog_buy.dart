@@ -1,8 +1,9 @@
-import 'package:cache_repo/features/buy/presentaion/views/widgets/pay_cache.dart';
+import 'package:cache_repo/features/buy/presentaion/views/widgets/payment/money_installment.dart';
+import 'package:cache_repo/features/buy/presentaion/views/widgets/payment/pay_cache.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/styles.dart';
+
+import '../../../../../../core/utils/styles.dart';
 import 'deferred_payment.dart';
-import 'money_installment.dart';
 
 class ShowDialogBuy2 extends StatefulWidget {
   @override
@@ -15,7 +16,6 @@ class _ShowDialogBuy2State extends State<ShowDialogBuy2> {
   String? selectedOption;
   String? selectedOption2 = 'اضغط لتحديد مورد';
 
-
   Widget buildWidget(int selectedRadio) {
     if (selectedRadio == 0) {
       return MoneyInstallment();
@@ -27,8 +27,6 @@ class _ShowDialogBuy2State extends State<ShowDialogBuy2> {
 
     return Container();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,23 +98,4 @@ class _ShowDialogBuy2State extends State<ShowDialogBuy2> {
       ),
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

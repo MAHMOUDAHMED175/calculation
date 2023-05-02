@@ -2,6 +2,9 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
+import 'package:cache_repo/features/store/presentaion/views/widgets/count_product/count_header.dart';
+import 'package:cache_repo/features/store/presentaion/views/widgets/count_product/count_product_item.dart';
+import 'package:cache_repo/features/store/presentaion/views/widgets/count_product/search_count.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -29,43 +32,9 @@ class CountProduct extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: defaultFormField(
-                    controller: searchCountController,
-                    type: TextInputType.number,
-                    submit: (textOfSearch) {
-                      StoreCubit.get(context)
-                          .searchProductCount(text: textOfSearch!);
-                    },
-                    change: (textOfSearch) {
-                      StoreCubit.get(context)
-                          .searchProductCount(text: textOfSearch!);
-                    },
-                    hintText: 'اضغط لتحديد الكميه'),
-              ),
-              Container(
-                color: ColorsApp.defualtColor,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: Text(
-                          'الكميه',
-                          style: Styles.textStyle15,
-                        ),
-                      ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: Text('اسم المنتج', style: Styles.textStyle15),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+              SearchCount(context,searchCountController),
+              headerCount(),
               Expanded(
                 child: ListView.separated(
                   scrollDirection: Axis.vertical,
@@ -89,37 +58,3 @@ class CountProduct extends StatelessWidget {
   }
 }
 
-class CountProductItem extends StatelessWidget {
-  CountProductItem({Key? key, required this.product, required this.place})
-      : super(key: key);
-
-  int place;
-
-  Map product;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          color: place % 2 == 0 ? Colors.blue[100] : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(product['productCount']),
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(product['productName']),
-              ),
-            ],
-          ),
-        ));
-  }
-}

@@ -35,6 +35,7 @@ class CardStore extends StatelessWidget {
                             child: InkWell(
                               onTap: () {
                                 GoRouter.of(context).push(AppRoute.newProduct);
+
                               },
                               child: Row(
                                 children: [
