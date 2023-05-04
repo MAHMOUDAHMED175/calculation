@@ -42,7 +42,6 @@ Product copyWith({  String? code,
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props {
     return [
       code,

@@ -1,9 +1,4 @@
-import 'dart:io';
-import 'package:cache_repo/core/utils/colors.dart';
-import 'package:cache_repo/core/utils/styles.dart';
-import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
-import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/app_bar_view_product_widget.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/header_view.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/view_product_widgets/search_view.dart';
@@ -11,7 +6,6 @@ import 'package:cache_repo/features/store/presentaion/views/widgets/view_product
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

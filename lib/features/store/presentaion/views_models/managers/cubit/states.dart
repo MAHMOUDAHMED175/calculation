@@ -57,5 +57,10 @@ class GetProductTreeSuccessState extends StoreStates{}
 class GetProductTreeErrorState extends StoreStates{}
 
 
+class GetFechProductsLoadingState extends StoreStates{}
+class GetFechProductsSuccessState extends StoreStates{}
+class GetFechProductsErrorState extends StoreStates{}
+
+
 ///api
 
