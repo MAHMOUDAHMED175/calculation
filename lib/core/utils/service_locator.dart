@@ -1,7 +1,6 @@
 
 
 import 'package:cache_repo/core/utils/dioHelper.dart';
-import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;

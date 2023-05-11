@@ -28,7 +28,8 @@ class CacheRepo extends StatelessWidget {
           BlocProvider(create: (BuildContext context) {
             return StoreCubit()
               ..CreateDatabase()
-              ..ProductTree();
+              ..ProductTree()
+              ..FechProducts();
           }),
           BlocProvider(create: (BuildContext context) {
             return BuyCubit();

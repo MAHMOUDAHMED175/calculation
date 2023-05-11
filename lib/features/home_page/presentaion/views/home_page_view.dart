@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-       // drawer: MyDrawer(),
+       drawer: MyDrawer(),
         body: GridViewWidget()
     );
   }

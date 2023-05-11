@@ -1,5 +1,3 @@
-import 'package:cache_repo/core/utils/colors.dart';
-import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/count_product/count_header.dart';
@@ -9,8 +7,6 @@ import 'package:cache_repo/features/store/presentaion/views_models/managers/cubi
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/widgets/text_from_field_widget.dart';
 
 class CountProduct extends StatelessWidget {
   CountProduct({Key? key}) : super(key: key);

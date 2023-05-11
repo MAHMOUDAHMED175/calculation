@@ -4,6 +4,7 @@ import 'package:cache_repo/core/errors/exeptions.dart';
 import 'package:cache_repo/core/errors/failure.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
+import 'package:cache_repo/features/store/data/fetch_products/FechProducts.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../../../../core/errors/error_message_model.dart';
-import '../../../../data/ModelProduct.dart';
+import '../../../../data/product_tree/ModelProduct.dart';
 
 class images {
   final String id;
@@ -310,6 +311,41 @@ class StoreCubit extends Cubit<StoreStates> {
         print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
 
         emit((GetProductTreeErrorState()));
+      return left(ServerFailure(error.errorMessageModel.status_message));
+
+    }
+  }
+
+
+
+
+  FechProductsModel? fechProductsModel;
+
+  Future<Either<Failure, FechProductsModel>> FechProducts() async {
+      emit(GetFechProductsLoadingState());
+      print('لسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسه');
+
+      try {
+      final response = await DioHelper.getData(url: '/products?limit=3&SortField=cost&SortType=desc');
+      if (response.statusCode == 200) {
+         fechProductsModel = FechProductsModel.fromJson(response.data);
+         print(fechProductsModel.toString());
+             emit((GetProductTreeSuccessState()));
+             print('ايوا ايوا ايوا ايو ا ايوا ايوا ');
+
+
+         return right(fechProductsModel!);
+      } else {
+        emit((GetFechProductsErrorState()));
+        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
+
+        throw ServerException(
+            errorMessageModel: ErrorMessageModel.formJson(response.data));
+      }
+    } on ServerException catch (error) {
+        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
+
+        emit((GetFechProductsErrorState()));
       return left(ServerFailure(error.errorMessageModel.status_message));
 
     }
