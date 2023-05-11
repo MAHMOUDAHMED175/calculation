@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +21,10 @@ class ViewProductItem extends StatelessWidget {
   var parcodeProductController = TextEditingController();
   var sellPriceProductController = TextEditingController();
 
-  ViewProductItem({/*required this.products*/ required this.units,required this.index});
+  ViewProductItem({required this.products /*required this.units*/,required this.index});
 
-  Units units;
-  // Map products;
+  // Units units;
+  Map products;
   int index;
 
 
@@ -32,15 +34,15 @@ class ViewProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StoreCubit, StoreStates>(
       builder: (BuildContext context, state) {
-        // File imageFile = File(products['image']);
-        //
-        // nameProductController.text = products['productName'].toString();
-        // buyPriceProductController.text = products['productBuy'].toString();
-        // countProductController.text = products['productCount'].toString();
-        // dateProductController.text = products['productDate'].toString();
-        // detailsProductController.text = products['productDetails'].toString();
-        // parcodeProductController.text = products['qrCode'].toString();
-        // sellPriceProductController.text = products['productSell'].toString();
+        File imageFile = File(products['image']);
+
+        nameProductController.text = products['productName'].toString();
+        buyPriceProductController.text = products['productBuy'].toString();
+        countProductController.text = products['productCount'].toString();
+        dateProductController.text = products['productDate'].toString();
+        detailsProductController.text = products['productDetails'].toString();
+        parcodeProductController.text = products['qrCode'].toString();
+        sellPriceProductController.text = products['productSell'].toString();
 
         return InkWell(
           onTap: () {
@@ -372,8 +374,8 @@ class ViewProductItem extends StatelessWidget {
                   child: CustomButton(
                     backgroundColor: Colors.white,
                     textColor: Colors.black,
-                    text:  '${units.id}',
-                    // text: "${products['productCount']}",
+                    // text:  '${units.id}',
+                    text: "${products['productCount']}",
                   ),
                 ),
                 SizedBox(
@@ -389,8 +391,8 @@ class ViewProductItem extends StatelessWidget {
                     child: CustomButton(
                       backgroundColor: Colors.white,
                       textColor: Colors.black,
-                      // text: products['productSell'],
-                      text:  '${units.conversationFactory}',
+                      text: products['productSell'],
+                      // text:  '${units.conversationFactory}',
                     ),
                   ),
                 ),
@@ -410,8 +412,8 @@ class ViewProductItem extends StatelessWidget {
                         TextButton(
                           onPressed: () {},
                           child: Text(
-                            '${units.conversationFactory}',
-                            // products['productName'],
+                            // '${units.conversationFactory}',
+                            products['productName'],
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -423,16 +425,16 @@ class ViewProductItem extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.003,
                 ),
-                // Flexible(
-                //   flex: 2,
-                //   child: Container(
-                //       child: products['image']==''? CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:
-                //       AssetImage('assets/images/no_image.png')):CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:FileImage(imageFile),
-                //       )
-                //
-                //
-                //   ),
-                // )
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                      child: products['image']==''? CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:
+                      AssetImage('assets/images/no_image.png')):CircleAvatar(backgroundColor:Theme.of(context).scaffoldBackgroundColor,backgroundImage:FileImage(imageFile),
+                      )
+
+
+                  ),
+                )
               ],
             ),
           ),

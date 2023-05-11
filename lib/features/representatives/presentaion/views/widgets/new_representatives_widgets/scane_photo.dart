@@ -1,5 +1,6 @@
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
+import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/utils/styles.dart';
 
 
-class AlertDialogeTakeImage extends StatelessWidget {
+class AlertDialogeTakeImageRepresentative extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
@@ -20,7 +21,7 @@ class AlertDialogeTakeImage extends StatelessWidget {
             children: [
               InkWell(
                 onTap: (){
-                  StoreCubit.get(context).takeImageCamera(context);
+                  RepresentativesCubit.get(context).takeImageCameraRepresentative(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -55,7 +56,7 @@ class AlertDialogeTakeImage extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  StoreCubit.get(context).takeImageGellary(context);
+                  RepresentativesCubit.get(context).takeImageGellaryRepresentative(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(

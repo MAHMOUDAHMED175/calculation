@@ -37,8 +37,14 @@ class NewProduct extends StatelessWidget {
               ),
               InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Images()));
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.white,
+                            content: AlertDialogeTakeImage(),
+                          );
+                        });
                   },
                   child: Stack(
                     alignment: Alignment.bottomRight,
@@ -50,7 +56,11 @@ class NewProduct extends StatelessWidget {
                         child: Center(
                           child: StoreCubit.get(context).imagesFile == null
                               ? Text('لم يتم اختيار صور بعد')
-                              : Image.file(StoreCubit.get(context).imagesFile!),
+                              : CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage: FileImage(
+                                    StoreCubit.get(context).imagesFile!,
+                                  )),
                         ),
                       ),
                       CircleAvatar(

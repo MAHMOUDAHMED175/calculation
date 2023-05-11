@@ -7,6 +7,7 @@ import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit
 import 'package:cache_repo/features/store/data/fetch_products/FechProducts.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
@@ -17,12 +18,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../../../../../core/errors/error_message_model.dart';
 import '../../../../data/product_tree/ModelProduct.dart';
 
-class images {
-  final String id;
-  final File image;
 
-  images({required this.id, required this.image});
-}
 
 class StoreCubit extends Cubit<StoreStates> {
   StoreCubit() : super(StoreInitialState());
@@ -68,7 +64,7 @@ class StoreCubit extends Cubit<StoreStates> {
   File? imagesFile;
   String? savePathImage;
 
-  Future<void> takeImageGellary() async {
+  Future<void> takeImageGellary(context) async {
     final XFile? imageFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
@@ -80,10 +76,13 @@ class StoreCubit extends Cubit<StoreStates> {
     final apDir = await syspath.getApplicationDocumentsDirectory();
     final fileName = path.basename(imagesFile!.path);
     final saveImagepath = await imagesFile!.copy('${apDir.path}/$fileName');
+    Navigator.pop(context);
+
     addImagePlace(saveImagepath);
+
   }
 
-  Future<void> takeImageCamera() async {
+  Future<void> takeImageCamera(context) async {
     final XFile? imageFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
@@ -95,8 +94,11 @@ class StoreCubit extends Cubit<StoreStates> {
 
     final apDir = await syspath.getApplicationDocumentsDirectory();
     final fileName = path.basename(imagesFile!.path);
+
     final saveImagepath = await imagesFile!.copy('${apDir.path}/$fileName');
+    Navigator.pop(context);
     addImagePlace(saveImagepath);
+
   }
 
   void addImagePlace(File image) {

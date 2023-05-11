@@ -33,38 +33,38 @@ class ViewProduct extends StatelessWidget {
                   ),
 
                   HeaderView(),
-                  // Expanded(
-                  //   child: ListView.separated(
-                  //     scrollDirection: Axis.vertical,
-                  //     itemBuilder: (context, index) => ViewProductItem(
-                  //       index:index,
-                  //       products: StoreCubit.get(context).searchStoreViewProduct.isEmpty
-                  //           ? StoreCubit.get(context).product[index]
-                  //           : StoreCubit.get(context).searchStoreViewProduct[index],
-                  //     ),
-                  //     separatorBuilder: (context, index) => myDivider(),
-                  //     itemCount: StoreCubit.get(context).searchStoreViewProduct.isEmpty
-                  //         ? StoreCubit.get(context).product.length
-                  //         : StoreCubit.get(context).searchStoreViewProduct.length,
-                  //   ),
-                  // ),
-                Expanded(
-                  child: ConditionalBuilder(
-                    condition:  StoreCubit.get(context).modelProduct!=null,
-                    builder: (context) => Expanded(
-                      child: ListView.separated(
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) => ViewProductItem(
-                              index:index,
-                              units: StoreCubit.get(context).modelProduct!.data![2].product![1].units![1]
-                          ),
-                          separatorBuilder: (context, index) => myDivider(),
-                          itemCount: 40
+                  Expanded(
+                    child: ListView.separated(
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) => ViewProductItem(
+                        index:index,
+                        products: StoreCubit.get(context).searchStoreViewProduct.isEmpty
+                            ? StoreCubit.get(context).product[index]
+                            : StoreCubit.get(context).searchStoreViewProduct[index],
                       ),
+                      separatorBuilder: (context, index) => myDivider(),
+                      itemCount: StoreCubit.get(context).searchStoreViewProduct.isEmpty
+                          ? StoreCubit.get(context).product.length
+                          : StoreCubit.get(context).searchStoreViewProduct.length,
                     ),
-                    fallback: (context) => Center(child: CircularProgressIndicator(color: Colors.green,strokeWidth: 10,)),
                   ),
-                ),
+                // Expanded(
+                //   child: ConditionalBuilder(
+                //     condition:  StoreCubit.get(context).modelProduct!=null,
+                //     builder: (context) => Expanded(
+                //       child: ListView.separated(
+                //           scrollDirection: Axis.vertical,
+                //           itemBuilder: (context, index) => ViewProductItem(
+                //               index:index,
+                //               units: StoreCubit.get(context).modelProduct!.data![2].product![1].units![1]
+                //           ),
+                //           separatorBuilder: (context, index) => myDivider(),
+                //           itemCount: 40
+                //       ),
+                //     ),
+                //     fallback: (context) => Center(child: CircularProgressIndicator(color: Colors.green,strokeWidth: 10,)),
+                //   ),
+                // ),
                 ],
               ),
             ),

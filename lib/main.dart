@@ -4,6 +4,7 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
 import 'package:cache_repo/core/utils/service_locator.dart';
 import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
+import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:flutter/material.dart';
@@ -27,15 +28,18 @@ class CacheRepo extends StatelessWidget {
         providers: [
           BlocProvider(create: (BuildContext context) {
             return StoreCubit()
-              ..CreateDatabase()
-              ..ProductTree()
-              ..FechProducts();
+              ..CreateDatabase();
+              // ..ProductTree()
+              // ..FechProducts();
           }),
           BlocProvider(create: (BuildContext context) {
             return BuyCubit();
           }),
           BlocProvider(create: (BuildContext context) {
             return SellCubit();
+          }),
+          BlocProvider(create: (BuildContext context) {
+            return RepresentativesCubit()..CreateDatabaseRepresent();
           }),
         ],
         child: MaterialApp.router(

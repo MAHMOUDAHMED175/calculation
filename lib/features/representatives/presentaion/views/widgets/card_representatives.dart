@@ -1,5 +1,6 @@
 import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/styles.dart';
+import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,7 +49,7 @@ class CardRepresentatives extends StatelessWidget {
                   SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      'اسم المندوب الحالى',
+                     "${RepresentativesCubit.get(context).represent[0]['representName']??'حدد مندوب حالى'}",
                       style: Styles.textStyle18.copyWith(color: Colors.white),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
