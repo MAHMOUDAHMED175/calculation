@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
+import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
+import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 
-class GridItemSell extends StatelessWidget {
-  GridItemSell({Key? key, required this.product, required this.index})
+class GridItemBuy extends StatelessWidget {
+  GridItemBuy({Key? key, required this.product, required this.index})
       : super(key: key);
 
   Map product;
@@ -70,9 +72,9 @@ class GridItemSell extends StatelessWidget {
                     padding: EdgeInsets.all(4.0),
                     child: CustomButton(
                       onPressed: () {
-                        SellCubit.get(context).addProductToSell(index, context);
-                        SellCubit.get(context)
-                            .allPriceSellFloatingActionButton();
+                        BuyCubit.get(context).addProductToBuy(index, context);
+                        BuyCubit.get(context)
+                            .allPriceBuyFloatingActionButton();
                       },
                       backgroundColor: ColorsApp.defualtColor,
                       textColor: Colors.white,

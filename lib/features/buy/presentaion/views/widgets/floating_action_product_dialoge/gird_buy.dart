@@ -26,7 +26,7 @@ class gridBuy extends StatelessWidget {
                 childAspectRatio: .6,
               ),
               itemBuilder: (context, index) =>
-                  GridItemSell(product: product[index], index: index),
+                  GridItemBuy(product: product[index], index: index),
               itemCount: StoreCubit.get(context).product.length,
             ),
           );
