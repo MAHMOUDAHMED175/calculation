@@ -1,16 +1,22 @@
 import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class moneySuppliersItem extends StatelessWidget {
-  moneySuppliersItem({Key? key,required this.index,required this.suppliers}) : super(key: key);
-
+class viewSuppliersItem extends StatelessWidget {
+  viewSuppliersItem({Key? key,required this.index,required this.suppliersData}) : super(key: key);
 
   int index;
-  Map suppliers;
+  Map suppliersData;
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<SuppliersCubit, SuppliersState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return InkWell(
       onTap: () {
         //9
@@ -33,7 +39,7 @@ class moneySuppliersItem extends StatelessWidget {
                 child: CustomButton(
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
-                  text: "${suppliers['money']}",
+                  text: "${suppliersData['suppliersPhone']}",
                 ),
               ),
               SizedBox(
@@ -44,7 +50,7 @@ class moneySuppliersItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                     " ${suppliers['suppliersName']}",
+                      "${suppliersData['suppliersName']}",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -54,7 +60,7 @@ class moneySuppliersItem extends StatelessWidget {
                     Opacity(
                       opacity: 0.6,
                       child: Text(
-                       " ${suppliers['suppliersAddress']}",
+                        "${suppliersData['suppliersAddress']}",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -67,5 +73,7 @@ class moneySuppliersItem extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

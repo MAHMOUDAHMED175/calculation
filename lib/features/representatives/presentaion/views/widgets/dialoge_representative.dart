@@ -56,7 +56,7 @@ class _DialogeRepresentativesState extends State<DialogeRepresentatives> {
                 padding: const EdgeInsets.all(8.0),
                 child: Expanded(
                   child: DropdownButton(
-                    value: representName,
+                    value: representName??'',
                     items: listRepresentName.map((option2) {
                       return DropdownMenuItem(
                         child: SizedBox(

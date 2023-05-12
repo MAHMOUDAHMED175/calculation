@@ -1,16 +1,11 @@
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
-import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
 import 'package:cache_repo/features/suppliers/presentaion/views/widgets/money_suppliers_widgets/app_bar_money_suppliers.dart';
 import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
-import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../confg/app_route.dart';
 import 'widgets/money_suppliers_widgets/moneySuppliersItem.dart';
 
 class MoneySuppliers extends StatelessWidget {
@@ -25,7 +20,7 @@ class MoneySuppliers extends StatelessWidget {
         return Scaffold(
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(60),
-              child: AppBarMoneySuppliers(moneyCount: 455488,)),
+              child: AppBarMoneySuppliers()),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -43,6 +38,7 @@ class MoneySuppliers extends StatelessWidget {
                               SuppliersCubit.get(context).searchSuppliersNameMoney(text: value!);
                             },
                             submit: (value) {
+                              SuppliersCubit.get(context).searchSuppliersNameMoney(text: value!);
 
                             },
                             hintText: 'ابحث عن اسم المورد'),

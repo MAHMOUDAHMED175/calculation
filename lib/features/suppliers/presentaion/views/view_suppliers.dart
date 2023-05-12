@@ -1,14 +1,12 @@
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
-import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
-import 'package:cache_repo/features/suppliers/presentaion/views/widgets/money_suppliers_widgets/app_bar_money_suppliers.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../confg/app_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/view_suppliers_widgets/app_bar_view_suppliers.dart';
+import 'widgets/view_suppliers_widgets/viewSuppliersItem.dart';
 
 class ViewSuppliers extends StatelessWidget {
   var searchController = TextEditingController();
@@ -17,6 +15,10 @@ class ViewSuppliers extends StatelessWidget {
   //222
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<SuppliersCubit, SuppliersState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
@@ -34,6 +36,12 @@ class ViewSuppliers extends StatelessWidget {
                         controller: searchController,
                         prefix: Icons.search,
                         type: TextInputType.text,
+                        change: (value){
+                          SuppliersCubit.get(context).searchSuppliersNamePhone(text: value!);
+                        },
+                        submit: (value){
+                          SuppliersCubit.get(context).searchSuppliersNamePhone(text: value!);
+                        },
                         hintText: 'ابحث عن اسم المورد'),
                   ),
                 ],
@@ -66,79 +74,24 @@ class ViewSuppliers extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                   scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) => viewSuppliersItem(place: index),
+                  itemBuilder: (context, index) => viewSuppliersItem(
+                      index: index,
+                      suppliersData:SuppliersCubit.get(context).searchSuppliersNamePhoneView.isEmpty?
+                      SuppliersCubit.get(context).suppliers[index]
+                          :SuppliersCubit.get(context).searchSuppliersNamePhoneView[index]
+                  ),
                   separatorBuilder: (context, index) => myDivider(),
-                  itemCount: 10),
+                  itemCount: SuppliersCubit.get(context).searchSuppliersNamePhoneView.isEmpty?
+                  SuppliersCubit.get(context).suppliers.length
+                      :SuppliersCubit.get(context).searchSuppliersNamePhoneView.length),
             ),
           ],
         ),
       ),
     );
+  },
+);
   }
 }
 
-class viewSuppliersItem extends StatelessWidget {
-  viewSuppliersItem({Key? key,required this.place}) : super(key: key);
-
-  int place;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        //9
-        //5
-        //8
-        GoRouter.of(context).push(AppRoute.viewPaymentSuppliers);
-      },
-      child: Container(
-        padding: EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          color: place % 2 == 0 ? Colors.blue[100] : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: CustomButton(
-                  backgroundColor: Colors.white,
-                  textColor: Colors.black,
-                  text: "01125345129",
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.003,
-              ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "اسم المورد",
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Opacity(
-                      opacity: 0.6,
-                      child: Text(
-                        "الكريمات",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 

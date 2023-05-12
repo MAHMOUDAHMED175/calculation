@@ -50,9 +50,11 @@ dependencies:
   flutter_bloc: ^8.1.1
   sqflite: ^2.1.0+1
   dartz: ^0.10.1
-
+  pdf: ^3.6.0
+  printing: ^5.4.0
   path: ^1.8.1
   path_provider: ^2.0.14
+  flutter_bluetooth_serial: ^0.4.0
 
 
 

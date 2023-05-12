@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
@@ -22,7 +23,7 @@ class SuppliersCubit extends Cubit<SuppliersState> {
 
   void searchSuppliersNamePhone({required String text}) {
     searchSuppliersNamePhoneView = suppliers
-        .where((element) => element['representName'].contains(text.toLowerCase()))
+        .where((element) => element['suppliersName'].contains(text.toLowerCase()))
         .toList();
     emit(SuppliersSearchNamePhoneState());
   }
@@ -31,7 +32,7 @@ class SuppliersCubit extends Cubit<SuppliersState> {
 
   void searchSuppliersNameMoney({required String text}) {
     searchSuppliersNameMoneyView = suppliers
-        .where((element) => element['representName'].contains(text.toLowerCase()))
+        .where((element) => element['suppliersName'].contains(text.toLowerCase()))
         .toList();
     emit(SuppliersSearchNameMoneyState());
   }
@@ -96,10 +97,14 @@ class SuppliersCubit extends Cubit<SuppliersState> {
 
   void getDatabaseSuppliers(database) {
     suppliers = []; // إعادة تعيين القائمة عند كل استرداد للبيانات
+    searchSuppliersNameMoneyView = []; // إعادة تعيين القائمة عند كل استرداد للبيانات
+    searchSuppliersNamePhoneView = []; // إعادة تعيين القائمة عند كل استرداد للبيانات
     emit(SuppliersGetDatabaseLoadingState());
     database.rawQuery('SELECT * FROM suppliers').then((value) {
       value.forEach((element) {
         suppliers.add(element);
+        searchSuppliersNameMoneyView.add(element);
+        searchSuppliersNamePhoneView.add(element);
       });
       emit(SuppliersGetDatabaseState());
     });
@@ -115,6 +120,35 @@ class SuppliersCubit extends Cubit<SuppliersState> {
   }
 
 ///database sqllite
+//////ابقى نعملهم فى المستقبل
+//   double d = 0;
+//   void moneyStillSuppliers(context) {
+//     for (int i = 0; i < suppliers.length; i++) {
+//       if (double.parse(suppliers[i]['money']) >= 0) {
+//         d += double.parse(suppliers[i]['money']);
+//       }
+//       emit(sdsd());
+//       print('allllllllllllllllllllllllllllllaaaaaaaaaaaaaaahhhhhhhhhh');
+//     }
+//   }
+//
+//
+//
+//   void moneyStillSuppliersm() {
+//
+//   for (int i = 0; i < suppliers.length; i++) {
+//       if (d<0) {
+//         d=0;
+//       }else{
+//         d -= double.parse(suppliers[i]['money']);
+//         emit(sdsdm());
+//
+//       }
+//     }
+//   }
+//
+
+
 
 
 }

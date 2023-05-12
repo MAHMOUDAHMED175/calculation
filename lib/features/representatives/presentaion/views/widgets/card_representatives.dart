@@ -152,14 +152,25 @@ class CardRepresentatives extends StatelessWidget {
                             onPressed: () {},
                             child: InkWell(
                               onTap: () {
-                                showDialog(context: context, builder: (context){
-                                  return AlertDialog(
-                                    backgroundColor: Colors.teal[100],
-                                    content: DialogeRepresentatives(),
-                                  ) ;
-                                });
-
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    RepresentativesCubit cubit = RepresentativesCubit.get(context);
+                                    if (cubit.represent.isEmpty) {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: Text('لا يوجد مندوبين'),
+                                      );
+                                    } else {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: DialogeRepresentatives(),
+                                      );
+                                    }
+                                  },
+                                );
                               },
+
                               child: Row(
                                 children: [
                                   Expanded(

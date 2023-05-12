@@ -1,5 +1,6 @@
 import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/styles.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
@@ -150,14 +151,25 @@ class CardSuppliers extends StatelessWidget {
                                 backgroundColor: ColorsApp.buttonColor),
                             onPressed: () {},
                             child: InkWell(
-                              onTap: () {
-                                showDialog(context: context, builder: (context){
-                                  return AlertDialog(
-                                    backgroundColor: Colors.tealAccent[100],
-                                    content: DialogeSuppliers(),
-                                  ) ;
-                                });
 
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                   SuppliersCubit cubit = SuppliersCubit.get(context);
+                                    if (cubit.suppliers.isEmpty) {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: Text('لا يوجد موردين'),
+                                      );
+                                    } else {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: DialogeSuppliers(),
+                                      );
+                                    }
+                                  },
+                                );
                               },
                               child: Row(
                                 children: [
