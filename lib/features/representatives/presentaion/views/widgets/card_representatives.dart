@@ -49,8 +49,8 @@ class CardRepresentatives extends StatelessWidget {
                   SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                     "${RepresentativesCubit.get(context).represent[0]['representName']??'حدد مندوب حالى'}",
-                      style: Styles.textStyle18.copyWith(color: Colors.white),
+                      'لا يوجد مندوب حالى',
+                      style: Styles.textStyle16.copyWith(color: Colors.white),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

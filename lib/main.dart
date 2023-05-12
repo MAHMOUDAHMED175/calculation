@@ -7,6 +7,7 @@ import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/
 import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,10 +28,9 @@ class CacheRepo extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (BuildContext context) {
-            return StoreCubit()
-              ..CreateDatabase();
-              // ..ProductTree()
-              // ..FechProducts();
+            return StoreCubit()..CreateDatabase();
+            // ..ProductTree()
+            // ..FechProducts();
           }),
           BlocProvider(create: (BuildContext context) {
             return BuyCubit();
@@ -40,6 +40,9 @@ class CacheRepo extends StatelessWidget {
           }),
           BlocProvider(create: (BuildContext context) {
             return RepresentativesCubit()..CreateDatabaseRepresent();
+          }),
+          BlocProvider(create: (BuildContext context) {
+            return SuppliersCubit()..CreateDatabaseSuppliers();
           }),
         ],
         child: MaterialApp.router(
