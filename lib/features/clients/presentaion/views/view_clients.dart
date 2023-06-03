@@ -1,13 +1,15 @@
+
+
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
-import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/divider.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
 import 'package:cache_repo/features/clients/presentaion/views/widgets/view_clients_widgets/app_bar_view_clients.dart';
+import 'package:cache_repo/features/clients/presentaion/views/widgets/view_clients_widgets/viewClientsItem.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../confg/app_route.dart';
+import '../views_models/managers/cubit/clients_cubit.dart';
 
 class ViewClients extends StatelessWidget {
   var searchController = TextEditingController();
@@ -16,6 +18,10 @@ class ViewClients extends StatelessWidget {
   //222
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<ClientsCubit, ClientsState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
@@ -33,6 +39,12 @@ class ViewClients extends StatelessWidget {
                         controller: searchController,
                         prefix: Icons.search,
                         type: TextInputType.text,
+                        change: (value){
+                          ClientsCubit.get(context).searchClientsNamePhone(text: value!);
+                        },
+                        submit: (value){
+                          ClientsCubit.get(context).searchClientsNamePhone(text: value!);
+                        },
                         hintText: 'ابحث عن اسم العميل'),
                   ),
                 ],
@@ -65,79 +77,24 @@ class ViewClients extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                   scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) => viewClientsItem(place: index),
+                  itemBuilder: (context, index) => viewClientsItem(
+                      index: index,
+                      clientsData:ClientsCubit.get(context).searchClientsNamePhoneView.isEmpty?
+                      ClientsCubit.get(context).clients[index]
+                          :ClientsCubit.get(context).searchClientsNamePhoneView[index]
+                  ),
                   separatorBuilder: (context, index) => myDivider(),
-                  itemCount: 10),
+                  itemCount: ClientsCubit.get(context).searchClientsNamePhoneView.isEmpty?
+                  ClientsCubit.get(context).clients.length
+                      :ClientsCubit.get(context).searchClientsNamePhoneView.length),
             ),
           ],
         ),
       ),
     );
+  },
+);
   }
 }
 
-class viewClientsItem extends StatelessWidget {
-  viewClientsItem({Key? key,required this.place}) : super(key: key);
-
-  int place;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        //9
-        //5
-        //8
-        GoRouter.of(context).push(AppRoute.viewPaymentClients);
-      },
-      child: Container(
-        padding: EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          color: place % 2 == 0 ? Colors.blue[100] : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: CustomButton(
-                  backgroundColor: Colors.white,
-                  textColor: Colors.black,
-                  text: "01125345129",
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.003,
-              ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "اسم العميل",
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Opacity(
-                      opacity: 0.6,
-                      child: Text(
-                        "الكريمات",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 

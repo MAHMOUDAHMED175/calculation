@@ -20,8 +20,7 @@ class SuppliersDeleteDatabaseState extends SuppliersState{}
 class SuppliersSearchNamePhoneState extends SuppliersState{}
 
 class SuppliersSearchNameMoneyState extends SuppliersState{}
-class sdsd extends SuppliersState{}
-class sdsdm extends SuppliersState{}
+
 /// search
 
 

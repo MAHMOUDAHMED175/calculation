@@ -18,15 +18,122 @@ class SuppliersCubit extends Cubit<SuppliersState> {
 
 
 
-  ///search
-  List searchSuppliersNamePhoneView = [];
+  ///linearSearch
+  // List searchSuppliersNamePhoneView = [];
+  //
+  // void searchSuppliersNamePhone({required String text}) {
+  //   searchSuppliersNamePhoneView = suppliers
+  //       .where((element) => element['suppliersName'].contains(text.toLowerCase()))
+  //       .toList();
+  //   emit(SuppliersSearchNamePhoneState());
+  // }
+
+
+
+
+  List<Map<String, dynamic>> searchSuppliersNamePhoneView = [];
 
   void searchSuppliersNamePhone({required String text}) {
-    searchSuppliersNamePhoneView = suppliers
-        .where((element) => element['suppliersName'].contains(text.toLowerCase()))
-        .toList();
+    // تحويل القائمة إلى بنية البيانات heap
+    heapify(suppliers, suppliers.length);
+
+    // فرز القائمة
+    heapSort(suppliers);
+
+    searchSuppliersNamePhoneView = binarySearch(suppliers, text.toLowerCase());
     emit(SuppliersSearchNamePhoneState());
   }
+  List<Map<String, dynamic>> binarySearch(List<Map<String, dynamic>> list, String text) {
+    List<Map<String, dynamic>> result = [];
+
+    int low = 0;
+    int high = list.length - 1;
+
+    while (low <= high) {
+      int mid = (low + high) ~/ 2;
+      String suppliersName = list[mid]['suppliersName'].toString().toLowerCase();
+
+      if (suppliersName.contains(text)) {
+        // تم العثور على تطابق جزئي
+        result.add(list[mid]);
+        // التحقق من العناصر السابقة
+        int prevIndex = mid - 1;
+        while (prevIndex >= 0 && list[prevIndex]['suppliersName'].toString().toLowerCase().contains(text)) {
+          result.add(list[prevIndex]);
+          prevIndex--;
+        }
+        // التحقق من العناصر التالية
+        int nextIndex = mid + 1;
+        while (nextIndex < list.length && list[nextIndex]['suppliersName'].toString().toLowerCase().contains(text)) {
+          result.add(list[nextIndex]);
+          nextIndex++;
+        }
+        break;
+      } else if (suppliersName.compareTo(text) < 0) {
+        // القيمة المطلوبة أكبر من القيمة المتوسطة
+        low = mid + 1;
+      } else {
+        // القيمة المطلوبة أصغر من القيمة المتوسطة
+        high = mid - 1;
+      }
+    }
+
+    return result;
+  }
+
+
+  ///heabSort
+  void heapify(List<Map<String, dynamic>> list, int n) {
+    for (int i = (n ~/ 2) - 1; i >= 0; i--) {
+      heapifyUtil(list, n, i);
+    }
+  }
+
+  void heapifyUtil(List<Map<String, dynamic>> list, int n, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    String suppliersName = list[largest]['suppliersName'].toString().toLowerCase();
+    if (left < n && suppliersName.compareTo(list[left]['suppliersName'].toString().toLowerCase()) < 0) {
+      largest = left;
+    }
+
+    if (right < n && suppliersName.compareTo(list[right]['suppliersName'].toString().toLowerCase()) < 0) {
+      largest = right;
+    }
+
+    if (largest != i) {
+      swap(list, i, largest);
+      heapifyUtil(list, n, largest);
+    }
+  }
+
+  void heapSort(List<Map<String, dynamic>> list) {
+    int n = list.length;
+    for (int i = n - 1; i >= 0; i--) {
+      swap(list, 0, i);
+      heapifyUtil(list, i, 0);
+    }
+  }
+
+  void swap(List<Map<String, dynamic>> list, int i, int j) {
+    Map<String, dynamic> temp = list[i];
+    list[i] = list[j];
+    list[j] = temp;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   List searchSuppliersNameMoneyView = [];
 
@@ -46,7 +153,7 @@ class SuppliersCubit extends Cubit<SuppliersState> {
 
   ///database sqllite
   late Database database;
-  List<Map> suppliers = [];
+  List<Map<String,dynamic>> suppliers = [];
 
   void CreateDatabaseSuppliers() {
     openDatabase(

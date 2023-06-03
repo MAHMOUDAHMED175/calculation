@@ -7,7 +7,7 @@ class AppBarViewClients extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAppBar(
-        textAppBar: 'عرض تفصيلى لحساب الاجل',
+        textAppBar: 'عرض تفصيلى لحساب العميل',
         elevationAppBar: 0.0,
         showenCenterText: true,
         actionsAppBar: []);

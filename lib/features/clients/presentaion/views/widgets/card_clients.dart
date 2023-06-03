@@ -2,7 +2,8 @@ import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/utils/colors.dart';
+import '../../../../../../core/utils/colors.dart';
+import '../../views_models/managers/cubit/clients_cubit.dart';
 import 'dialoge_clients.dart';
 
 class CardClients extends StatelessWidget {
@@ -81,7 +82,7 @@ class CardClients extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      "المبالغ المتبقيه عند العملاء",
+                                      "المبالغ المتبقيه للعملاء",
                                       textDirection: TextDirection.rtl,
                                       style: Styles.textStyle14.copyWith(
                                           fontSize: 16, color: Colors.white),
@@ -150,14 +151,25 @@ class CardClients extends StatelessWidget {
                                 backgroundColor: ColorsApp.buttonColor),
                             onPressed: () {},
                             child: InkWell(
-                              onTap: () {
-                                showDialog(context: context, builder: (context){
-                                  return AlertDialog(
-                                    backgroundColor: Colors.tealAccent[100],
-                                    content: DialogeClients(),
-                                  ) ;
-                                });
 
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                   ClientsCubit cubit = ClientsCubit.get(context);
+                                    if (cubit.clients.isEmpty) {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: Text('لا يوجد عملاء'),
+                                      );
+                                    } else {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.teal[100],
+                                        content: DialogeClients(),
+                                      );
+                                    }
+                                  },
+                                );
                               },
                               child: Row(
                                 children: [

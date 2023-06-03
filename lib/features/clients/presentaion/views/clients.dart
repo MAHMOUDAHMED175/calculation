@@ -3,7 +3,8 @@
 import 'package:cache_repo/features/clients/presentaion/views/widgets/card_clients.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/custom_app_par.dart';
+import '../../../../../core/widgets/custom_app_par.dart';
+
 
 
 class Clients extends StatelessWidget {
@@ -18,7 +19,7 @@ class Clients extends StatelessWidget {
         preferredSize: Size.fromHeight(60),
 
         child: CustomAppBar(
-            textAppBar: 'الموردين',
+            textAppBar: 'العملاء',
             elevationAppBar: 0.0,
             showenCenterText: true,
             actionsAppBar: []),

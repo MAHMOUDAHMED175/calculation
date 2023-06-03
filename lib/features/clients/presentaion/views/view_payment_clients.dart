@@ -2,10 +2,9 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/styles.dart';
 import 'package:cache_repo/core/widgets/custom_button.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
-import 'package:cache_repo/features/clients/presentaion/views/widgets/view_payment_clients/app_bar_view_clients_widget.dart';
+import 'package:cache_repo/features/clients/presentaion/views/widgets/view_clients_clients/app_bar_view_clients_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/widgets/divider.dart';
+import '../../../../../core/widgets/divider.dart';
 
 class ViewPaymentClients extends StatelessWidget {
   final TextEditingController  payMoneyController=TextEditingController();

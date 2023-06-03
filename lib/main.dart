@@ -2,8 +2,8 @@ import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/confg/observer.dart';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
-import 'package:cache_repo/core/utils/service_locator.dart';
 import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
+import 'package:cache_repo/features/clients/presentaion/views_models/managers/cubit/clients_cubit.dart';
 import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await DioHelper.Init();
-  setupServiceLocator();
+  // setupServiceLocator();
   runApp(const CacheRepo());
 }
 
@@ -43,6 +43,9 @@ class CacheRepo extends StatelessWidget {
           }),
           BlocProvider(create: (BuildContext context) {
             return SuppliersCubit()..CreateDatabaseSuppliers();
+          }),
+          BlocProvider(create: (BuildContext context) {
+            return ClientsCubit()..CreateDatabaseClients();
           }),
         ],
         child: MaterialApp.router(

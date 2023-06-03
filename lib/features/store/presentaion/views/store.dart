@@ -1,5 +1,4 @@
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
-import 'package:cache_repo/features/home_page/presentaion/views/widgets/home_widgets/card.dart';
 import 'package:cache_repo/features/store/presentaion/views/widgets/card_store.dart';
 import 'package:flutter/material.dart';
 
@@ -21,11 +20,13 @@ class StoreApp extends StatelessWidget {
             actionsAppBar: []),
       ),
 
-      body: Column(
+      body:
+      Column(
           children: [
 
             Padding(
               padding: const EdgeInsets.all(20.0),
+              // child: CardStore(),
               child: CardStore(),
             ),
           ],

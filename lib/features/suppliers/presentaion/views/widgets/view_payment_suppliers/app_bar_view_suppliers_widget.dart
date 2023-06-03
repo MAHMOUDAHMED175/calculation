@@ -1,5 +1,6 @@
-import 'package:cache_repo/core/widgets/custom_app_par.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../core/widgets/custom_app_par.dart';
 
 class AppBarViewSuppliers extends StatelessWidget {
   const AppBarViewSuppliers({Key? key}) : super(key: key);

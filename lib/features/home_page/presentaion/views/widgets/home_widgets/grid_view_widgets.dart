@@ -62,8 +62,53 @@ class GridViewWidget extends StatelessWidget {
               GoRouter.of(context).push(AppRoute.Client);
             },
             child: SelectCard(
-              icon: Icons.person_pin_sharp,
+              icon: Icons.supervisor_account,
               title: "العملاء",
+            )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.call_to_action_sharp,
+              title: "السندات",
+            )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.money,
+              title: "المصروفات",
+            )),
+        InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.store,
+              title: "القيود",
+            )), InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.settings,
+              title: "الصيانه",
+            )), InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.reset_tv_rounded,
+              title: "تخزين واسترجاع البيانات",
+            )), InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.homePage);
+            },
+            child: SelectCard(
+              icon: Icons.data_thresholding_rounded,
+              title: "الاستعلامات والتقارير",
             )),
       ],
     );
