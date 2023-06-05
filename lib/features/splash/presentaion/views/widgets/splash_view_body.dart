@@ -35,15 +35,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration:  BoxDecoration(
-            image: DecorationImage(image: AssetImage(AssetsData.testImage),fit: BoxFit.cover)
-        ),
-
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(AssetsData.testImage), fit: BoxFit.cover)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.monetization_on,size: 100,),
+            const Icon(
+              Icons.monetization_on,
+              size: 100,
+            ),
             const SizedBox(height: 8),
             SlidingAnimation(
               slidingAnimations: slidingAnimation,
@@ -56,7 +58,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void slideAnimate() {
     animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 8));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     slidingAnimation =
         Tween<Offset>(begin: const Offset(0, 10), end: Offset.zero)
@@ -72,9 +74,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         // Get.to(() => const HomePage(),
         //     duration: KtransationDuration, transition: Transition.fade);
 
-       GoRouter.of(context).pushReplacement(AppRoute.homePage);
-
-
+        GoRouter.of(context).pushReplacement(AppRoute.homePage);
       },
     );
   }

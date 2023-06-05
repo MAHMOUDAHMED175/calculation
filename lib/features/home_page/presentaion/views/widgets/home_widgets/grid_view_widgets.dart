@@ -75,7 +75,7 @@ class GridViewWidget extends StatelessWidget {
             )),
         InkWell(
             onTap: () {
-              GoRouter.of(context).push(AppRoute.homePage);
+              GoRouter.of(context).push(AppRoute.expenses);
             },
             child: SelectCard(
               icon: Icons.money,

@@ -6,4 +6,4 @@
 
 
 
-const KtransationDuration=Duration(seconds: 8);
+const KtransationDuration=Duration(seconds: 2);

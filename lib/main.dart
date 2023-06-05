@@ -4,6 +4,7 @@ import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
 import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
 import 'package:cache_repo/features/clients/presentaion/views_models/managers/cubit/clients_cubit.dart';
+import 'package:cache_repo/features/expenses/presentation/views_models/managers/cubit/expenses_cubit.dart';
 import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
 import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
@@ -46,6 +47,9 @@ class CacheRepo extends StatelessWidget {
           }),
           BlocProvider(create: (BuildContext context) {
             return ClientsCubit()..CreateDatabaseClients();
+          }),
+          BlocProvider(create: (BuildContext context) {
+            return ExpensesCubit()..CreateDatabase();
           }),
         ],
         child: MaterialApp.router(
