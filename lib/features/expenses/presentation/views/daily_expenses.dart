@@ -21,7 +21,7 @@ class DailyExpenses extends StatelessWidget {
         return Scaffold(
           appBar: PreferredSize(
               child: AppBarDailyExpenses(
-                dailyMoneyExpenses: ExpensesCubit.get(context).sumExpenses,
+                dailyMoneyExpenses: ExpensesCubit.get(context).sumDailyExpenses,
               ),
               preferredSize: Size.fromHeight(60)),
           body: Column(

@@ -64,22 +64,23 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     database.rawQuery('SELECT * FROM expenses').then((value) {
       value.forEach((element) {
         expensesListItem.add(element);
+        print(element.toString());
       });
-      collectAllExpenses();
+      collectAllDailyExpenses();
 
       emit(ExpensesGetDatabaseLoadedState());
     });
   }
 
-  double sumExpenses = 0.0;
+  double sumDailyExpenses = 0.0;
 
-  void collectAllExpenses() {
-    sumExpenses = 0.0;
+  void collectAllDailyExpenses() {
+    sumDailyExpenses = 0.0;
     for (int i = 0; i <= expensesListItem.length; i++) {
-      sumExpenses =
-          sumExpenses + double.parse(expensesListItem[i]['moneyExpenses']);
+      sumDailyExpenses =
+          sumDailyExpenses + double.parse(expensesListItem[i]['moneyExpenses']);
       emit(collectAllExpensesState());
-      print('${sumExpenses} ');
+      print('${sumDailyExpenses} ');
     }
   }
 
@@ -93,6 +94,7 @@ class ExpensesCubit extends Cubit<ExpensesState> {
     for (int i = 0; i < expensesListItem.length; i++) {
       if (expensesListItem[i]['DateExpenses'].contains(date.toLowerCase())) {
         dateOfDailyExpenses.add(expensesListItem[i]);
+
         isDateFound = true;
       }
     }
@@ -103,10 +105,38 @@ class ExpensesCubit extends Cubit<ExpensesState> {
       // and use it according to your needs
       dateOfDailyExpenses.clear();
       print('cleeeeeeeeeeeeeeaaaaaaarrrrrr');
-
     }
 
     emit(dateOfDailyExpensesState());
+  }
+
+  List daysOfMonth = [];
+  double sumMonthExpenses = 0.0;
+
+  void getDaysOfMonth(String selectedMonth) {
+    daysOfMonth.clear(); // مسح القائمة قبل ملئها من جديد
+
+    bool isMonthFound = false;
+    sumMonthExpenses = 0.0; // إعادة تعيين قيمة المجموع للصفر
+
+    for (int i = 0; i < expensesListItem.length; i++) {
+      String expenseDate = expensesListItem[i]['DateExpenses'];
+
+      if (expenseDate.substring(0, 7) == selectedMonth.substring(0, 7)) {
+        daysOfMonth.add(expensesListItem[i]);
+        sumMonthExpenses += double.parse(expensesListItem[i]['moneyExpenses']);
+        isMonthFound = true;
+      }
+    }
+
+    if (!isMonthFound) {
+      print('لم يتم العثور على مصاريف للشهر المحدد.');
+      daysOfMonth.clear();
+      print('تم مسح القائمة');
+      sumMonthExpenses = 0.0; // إعادة تعيين قيمة المجموع للصفر
+    }
+
+    emit(dateOfMonthlyExpensesState());
   }
 
 // void DeleteData({required int id1, context}) async {

@@ -20,3 +20,4 @@ class collectAllExpensesState extends ExpensesState{}
 
 
 class dateOfDailyExpensesState extends ExpensesState{}
+class dateOfMonthlyExpensesState extends ExpensesState{}

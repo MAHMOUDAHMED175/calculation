@@ -5,8 +5,8 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-Widget dateDailyExpenses(BuildContext context,
-    TextEditingController dateDailyExpensesController) {
+Widget dateMonthExpenses(BuildContext context,
+    TextEditingController dateMonthExpensesController) {
   return BlocBuilder<ExpensesCubit, ExpensesState>(
     builder: (context, state) {
       return LayoutBuilder(
@@ -27,17 +27,18 @@ Widget dateDailyExpenses(BuildContext context,
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime.now(),
+                        initialEntryMode: DatePickerEntryMode.calendar,
                         lastDate: DateTime.parse("2230-12-12"),
                       ).then((value) {
-                        dateDailyExpensesController.text = formatDate(
+                        dateMonthExpensesController.text = formatDate(
                             value!, [yyyy, '-', mm, '-', dd]);
-                        ExpensesCubit.get(context).DateOfDailyExpenses(dateDailyExpensesController.text);
+                        ExpensesCubit.get(context).getDaysOfMonth(dateMonthExpensesController.text);
                       });
                     },
                     readOnly: true,
                     hintText: "اضغط لاختيار تاريخ محدد",
                     prefix: Icons.date_range,
-                    controller: dateDailyExpensesController,
+                    controller: dateMonthExpensesController,
                     type: TextInputType.number,
                     fillsColor: ColorsApp.fillWhiteColorTextFormField,
                   ),
