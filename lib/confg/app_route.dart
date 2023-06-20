@@ -3,10 +3,12 @@ import 'package:cache_repo/features/clients/presentaion/views/new_clients.dart';
 import 'package:cache_repo/features/expenses/presentation/views/daily_expenses.dart';
 import 'package:cache_repo/features/expenses/presentation/views/expenses.dart';
 import 'package:cache_repo/features/home_page/presentaion/views/home_page_view.dart';
+import 'package:cache_repo/features/reports/presentation/view/reports.dart';
+import 'package:cache_repo/features/reports/presentation/view/treasury_transactions_report.dart';
 import 'package:cache_repo/features/representatives/presentaion/views/new_representatives.dart';
 import 'package:cache_repo/features/representatives/presentaion/views/representatives.dart';
 import 'package:cache_repo/features/representatives/presentaion/views/view_representatives.dart';
-import 'package:cache_repo/features/sell/presentaion/views/sell.dart';
+import 'package:cache_repo/features/buy/presentaion/views/sell.dart';
 import 'package:cache_repo/features/store/presentaion/views/count_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/new_product.dart';
 import 'package:cache_repo/features/store/presentaion/views/store.dart';
@@ -18,45 +20,72 @@ import 'package:cache_repo/features/suppliers/presentaion/views/view_payment_sup
 import 'package:cache_repo/features/suppliers/presentaion/views/view_suppliers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../features/buy/presentaion/views/buy.dart';
+import '../features/sell/presentaion/views/buy.dart';
 import '../features/clients/presentaion/views/money_clients.dart';
 import '../features/clients/presentaion/views/view_clients.dart';
 import '../features/clients/presentaion/views/view_payment_clients.dart';
 import '../features/expenses/presentation/views/month_expenses.dart';
+import '../features/reports/presentation/view/buying_bill_report/buying_bill_report.dart';
+import '../features/reports/presentation/view/buying_bill_report/details_bill_report.dart';
+import '../features/reports/presentation/view/report_company.dart';
+import '../features/reports/presentation/view/selling_bill_report/details_bill_report.dart';
+import '../features/reports/presentation/view/selling_bill_report/selling_bill_report.dart';
 import '../features/splash/presentaion/views/splash_view.dart';
 
 abstract class AppRoute {
-  static const String homePage = '/homePage';
+  static const String homePage = '/HomePage';
+
   //store
   static const String store = '/Store';
   static const String buy = '/Buy';
   static const String sell = '/Sell';
   static const String Supplier = '/Supplier';
   static const String Client = '/Client';
-  static const String expenses = '/expenses';
+  static const String expenses = '/Expenses';
+  static const String reports = '/Reports';
 
   ///
   static const String newProduct = '/NewProduct';
   static const String viewProduct = '/ViewProduct';
   static const String countProduct = '/CountProduct';
+
+  ///
+  static const String reportCompany = '/ReportCompany';
+
   ///
   static const String newSuppliers = '/NewSuppliers';
-  static const String moneySuppliers = '/moneySuppliers';
+  static const String moneySuppliers = '/MoneySuppliers';
   static const String viewPaymentSuppliers = '/ViewPaymentSuppliers';
   static const String viewSuppliers = '/ViewSuppliers';
+
   ///
-  static const String moneyClients = '/moneyClients';
+  static const String moneyClients = '/MoneyClients';
   static const String newClients = '/NewClients';
   static const String viewClients = '/ViewClients';
   static const String viewPaymentClients = '/ViewPaymentClients';
+
   ///
-  static const String newRepresentatives = '/newRepresentatives';
+  static const String newRepresentatives = '/NewRepresentatives';
   static const String Representatives = '/Representatives';
   static const String viewRepresentatives = '/ViewRepresentatives';
-  ///
-  static const String dailyExpenses = '/dailyExpenses';
-  static const String monthExpenses = '/monthExpenses';
 
+  ///
+  static const String dailyExpenses = '/DailyExpenses';
+  static const String monthExpenses = '/MonthExpenses';
+
+
+
+  static const String buyingBillReport = '/BuyingBillReport';
+  static const String detailsBillReportBuying = '/DetailsBillReportBuying';
+
+
+
+  static const String sellingBillReport = '/SellingBillReport';
+  static const String detailsBillReportSelling = '/DetailsBillReportSelling';
+
+
+
+  static const String treasuryTransactionsReport = '/TreasuryTransactionsReport';
 
   static final GoRouter router = GoRouter(
     routes: [
@@ -83,145 +112,175 @@ abstract class AppRoute {
       GoRoute(
         path: Representatives,
         builder: (BuildContext context, GoRouterState state) {
-          return  Representative();
+          return Representative();
         },
       ),
       GoRoute(
         path: Supplier,
         builder: (BuildContext context, GoRouterState state) {
-          return  Suppliers();
+          return Suppliers();
         },
       ),
       GoRoute(
         path: Client,
         builder: (BuildContext context, GoRouterState state) {
-          return  Clients();
+          return Clients();
         },
       ),
       GoRoute(
         path: expenses,
         builder: (BuildContext context, GoRouterState state) {
-          return  Expenses();
+          return Expenses();
         },
       ),
 
       GoRoute(
         path: sell,
         builder: (BuildContext context, GoRouterState state) {
-          return  Sell();
+          return Sell();
         },
       ),
       GoRoute(
         path: buy,
         builder: (BuildContext context, GoRouterState state) {
-          return  Buy();
+          return Buy();
         },
       ),
       GoRoute(
         path: dailyExpenses,
         builder: (BuildContext context, GoRouterState state) {
-          return  DailyExpenses();
+          return DailyExpenses();
         },
       ),
       GoRoute(
         path: monthExpenses,
         builder: (BuildContext context, GoRouterState state) {
-          return  MonthExpenses();
+          return MonthExpenses();
+        },
+      ),
+      GoRoute(
+        path: reports,
+        builder: (BuildContext context, GoRouterState state) {
+          return Reports();
         },
       ),
 
-
       ///
-
-
-
-
-
-
-
 
       ///
       GoRoute(
         path: newProduct,
         builder: (BuildContext context, GoRouterState state) {
-          return  NewProduct();
+          return NewProduct();
         },
       ),
       GoRoute(
         path: newRepresentatives,
         builder: (BuildContext context, GoRouterState state) {
-          return  NewRepresentatives();
+          return NewRepresentatives();
         },
       ),
       GoRoute(
         path: moneySuppliers,
         builder: (BuildContext context, GoRouterState state) {
-          return  MoneySuppliers();
+          return MoneySuppliers();
         },
       ),
       GoRoute(
         path: moneyClients,
         builder: (BuildContext context, GoRouterState state) {
-          return  MoneyClients();
+          return MoneyClients();
         },
       ),
       GoRoute(
         path: newSuppliers,
         builder: (BuildContext context, GoRouterState state) {
-          return  NewSuppliers();
+          return NewSuppliers();
         },
       ),
       GoRoute(
         path: newClients,
         builder: (BuildContext context, GoRouterState state) {
-          return  NewClients();
+          return NewClients();
         },
       ),
       GoRoute(
         path: viewProduct,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewProduct();
+          return ViewProduct();
         },
       ),
       GoRoute(
         path: viewPaymentSuppliers,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewPaymentSuppliers();
+          return ViewPaymentSuppliers();
         },
       ),
       GoRoute(
         path: viewPaymentClients,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewPaymentClients();
+          return ViewPaymentClients();
         },
       ),
       GoRoute(
         path: viewSuppliers,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewSuppliers();
+          return ViewSuppliers();
         },
       ),
       GoRoute(
         path: viewClients,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewClients();
+          return ViewClients();
         },
       ),
       GoRoute(
         path: viewRepresentatives,
         builder: (BuildContext context, GoRouterState state) {
-          return  ViewRepresentatives();
+          return ViewRepresentatives();
         },
       ),
       GoRoute(
         path: countProduct,
         builder: (BuildContext context, GoRouterState state) {
-          return  CountProduct();
+          return CountProduct();
         },
       ),
-
-
-
+      GoRoute(
+        path: reportCompany,
+        builder: (BuildContext context, GoRouterState state) {
+          return ReportCompany();
+        },
+      ),
+      GoRoute(
+        path: buyingBillReport,
+        builder: (BuildContext context, GoRouterState state) {
+          return BuyingBillReport();
+        },
+      ),
+      GoRoute(
+        path: detailsBillReportBuying,
+        builder: (BuildContext context, GoRouterState state) {
+          return DetailsBillReportBuying();
+        },
+      ),
+      GoRoute(
+        path: sellingBillReport,
+        builder: (BuildContext context, GoRouterState state) {
+          return SellingBillReport();
+        },
+      ),
+      GoRoute(
+        path: detailsBillReportSelling,
+        builder: (BuildContext context, GoRouterState state) {
+          return DetailsBillReportSelling();
+        },
+      ), GoRoute(
+        path: treasuryTransactionsReport,
+        builder: (BuildContext context, GoRouterState state) {
+          return TreasuryTransactionsReport();
+        },
+      ),
 
 
     ],

@@ -1,17 +1,12 @@
 import 'package:cache_repo/features/expenses/presentation/views/widgets/app_bar_expenses_widget/month_expenses_widget/app_bar_month_expenses.dart';
-import 'package:cache_repo/features/expenses/presentation/views/widgets/app_bar_expenses_widget/month_expenses_widget/date_month_expenses.dart';
 import 'package:cache_repo/features/expenses/presentation/views/widgets/app_bar_expenses_widget/month_expenses_widget/header_month_expenses.dart';
-import 'package:cache_repo/features/expenses/presentation/views/widgets/app_bar_expenses_widget/month_expenses_widget/month_expenses_item_list_widget.dart';
 import 'package:cache_repo/features/expenses/presentation/views/widgets/month_expenses_widget/date_month_expenses.dart';
 import 'package:cache_repo/features/expenses/presentation/views_models/managers/cubit/expenses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/divider.dart';
-import 'widgets/daily_expenses_widget/app_bar_daily_expenses.dart';
 import 'widgets/daily_expenses_widget/daily_expenses_item_list_widget.dart';
-import 'widgets/daily_expenses_widget/date_daily_expenses.dart';
-import 'widgets/daily_expenses_widget/header_daily_expenses.dart';
 
 class MonthExpenses extends StatelessWidget {
   MonthExpenses({Key? key}) : super(key: key);
@@ -49,9 +44,7 @@ class MonthExpenses extends StatelessWidget {
                       : ExpensesCubit.get(context).daysOfMonth.length,
                 ),
               ),
-
-
-          ],
+            ],
           ),
         );
       },

@@ -20,4 +20,10 @@ class ColorsApp{
 
 
   static Color whiteCard=Colors.white;
+
+
+
+
+  static Color whiteText=Colors.white;
+  static Color blackText=Colors.black;
 }

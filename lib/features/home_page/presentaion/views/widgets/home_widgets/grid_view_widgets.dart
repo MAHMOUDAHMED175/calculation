@@ -104,7 +104,7 @@ class GridViewWidget extends StatelessWidget {
               title: "تخزين واسترجاع البيانات",
             )), InkWell(
             onTap: () {
-              GoRouter.of(context).push(AppRoute.homePage);
+              GoRouter.of(context).push(AppRoute.reports);
             },
             child: SelectCard(
               icon: Icons.data_thresholding_rounded,

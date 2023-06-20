@@ -2,11 +2,11 @@ import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/confg/observer.dart';
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
-import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
+import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/buy_cubit.dart';
 import 'package:cache_repo/features/clients/presentaion/views_models/managers/cubit/clients_cubit.dart';
 import 'package:cache_repo/features/expenses/presentation/views_models/managers/cubit/expenses_cubit.dart';
 import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
-import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
+import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/cubit.dart';
 import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class CacheRepo extends StatelessWidget {
             return BuyCubit();
           }),
           BlocProvider(create: (BuildContext context) {
-            return SellCubit();
+            return SellCubit()..CreateDatabase();
           }),
           BlocProvider(create: (BuildContext context) {
             return RepresentativesCubit()..CreateDatabaseRepresent();

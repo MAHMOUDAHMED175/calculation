@@ -1,4 +1,6 @@
 import 'package:cache_repo/core/widgets/custom_app_par.dart';
+import 'package:cache_repo/features/home_page/presentaion/views/widgets/drawer_widgets/content.dart';
+import 'package:cache_repo/features/home_page/presentaion/views/widgets/drawer_widgets/header.dart';
 import 'package:cache_repo/features/home_page/presentaion/views/widgets/home_widgets/grid_view_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +25,32 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-       drawer: MyDrawer(),
-        body: GridViewWidget()
+       drawer:  Drawer(
+         child: SingleChildScrollView(
+           child: Column(
+             children: [
+               headerDrawer(context),
+               contextDrawer(context),
+             ],
+           ),
+         ),
+       ),
+        body:Container(
+          width: double.infinity,
+          child: MyDrawer3d(
+            drawer: Drawer(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    headerDrawer(context),
+                    contextDrawer(context),
+                  ],
+                ),
+              ),
+            ),
+            child: GridViewWidget(),
+          ),
+        ),
     );
   }
 }

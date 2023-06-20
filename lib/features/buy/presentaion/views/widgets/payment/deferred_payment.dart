@@ -1,10 +1,11 @@
-import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_cubit.dart';
-import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/buy_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/text_from_field_widget.dart';
+import '../../../../../store/presentaion/views_models/managers/cubit/cubit.dart';
+import '../../../../../store/presentaion/views_models/managers/cubit/states.dart';
+import '../../../../../suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
+import '../../../views_models/managers/cubit/sell_cubit.dart';
 
 class DeferredPayment extends StatefulWidget {
   DeferredPayment({Key? key}) : super(key: key);
@@ -14,211 +15,244 @@ class DeferredPayment extends StatefulWidget {
 }
 
 class _DeferredPaymentState extends State<DeferredPayment> {
-  int selectedRadio = 0;
-
-  List<String> options2 = ['اضغط لتحديد مورد', 'دفعd اجل', 'دفdع كاش'];
-
-  String? selectedOption;
-
-  String? selectedOption2 = 'اضغط لتحديد مورد';
+  List<Map>? listSuppliersName;
+  String? suppliersName;
   var payController = TextEditingController();
+  var discountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BuyCubit, BuyState>(builder: (context, state) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                    backgroundColor: Colors.white,
-                    textColor: Colors.teal,
-                    text:
-                        '${BuyCubit.get(context).countallPriceBuyFloatingActionButton}'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(width: 60, child: Text('الاجمالى ')),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                    backgroundColor: Colors.white,
-                    textColor: Colors.teal,
-                    text: '${BuyCubit.get(context).DarebaResult}'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                width: 60,
-                child: Text('الضريبه '),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                    backgroundColor: Colors.white,
-                    textColor: Colors.teal,
-                    text:
-                        '${BuyCubit.get(context).afterCalculateDarebaResult}'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                width: 60,
-                child: Text('الاجمالى بعد الضريبه '),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                    backgroundColor: Colors.white,
-                    textColor: Colors.teal,
-                    text: '95.5 جنيه'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                width: 60,
-                child: Text('الخصم '),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: defaultFormField(
-                    controller: payController,
-                    change: (value) {
-                      BuyCubit.get(context)
-                          .buyRemainingPaymentFloatingActionButton(value!);
-                    },
-                    submit: (value) {
-                      BuyCubit.get(context)
-                          .buyRemainingPaymentFloatingActionButton(value!);
-                    },
-                    hintText: 'ما سيتم دفعه',
-                    fillsColor: Colors.red[100],
-                    type: TextInputType.number),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                width: 60,
-                child: Text('مدفوع '),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                    backgroundColor: Colors.white,
-                    textColor: Colors.teal,
-                    text: '${BuyCubit.get(context).buyRemainingPayment}'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                width: 60,
-                child: Text('باقى '),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
+    return BlocBuilder<StoreCubit,StoreStates>(
+      builder: (context,state){
+        listSuppliersName = SuppliersCubit.get(context).suppliers;
+        suppliersName =
+        (listSuppliersName != null && listSuppliersName!.isNotEmpty)
+            ? listSuppliersName![0]['suppliersName']
+            : 'اضغط لاختيار مورد';
+        return  Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                      backgroundColor: Colors.white,
+                      textColor: Colors.teal,
+                      text: '${SellCubit.get(context).countallPriceSellFloatingActionButton}'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(width: 60, child: Text('الاجمالى ')),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                      backgroundColor: Colors.white,
+                      textColor: Colors.teal,
+                      text: '${SellCubit.get(context).DarebaResult}'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 60,
+                  child: Text('الضريبه '),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                      backgroundColor: Colors.white,
+                      textColor: Colors.teal,
+                      text:  '${SellCubit.get(context).afterCalculateDarebaResult}'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 60,
+                  child: Text('الاجمالى بعد الضريبه '),
+                )
+              ],
+            ),
+
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: defaultFormField(
+                      controller: discountController,
+                      change: (value){
+                        SellCubit.get(context).discountPaymentFloatingActionButton(value!);
+                      },
+                      submit:(value){
+                        SellCubit.get(context).discountPaymentFloatingActionButton(value!);
+                      },
+
+                      fillsColor: Colors.red[100],
+                      type: TextInputType.number),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 60,
+                  child: Text('الخصم '),
+                )
+              ],
+            ), SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: defaultFormField(
+                      controller: payController,
+                      change: (value){
+                        SellCubit.get(context).remainingPaymentFloatingActionButton(value!);
+                      },
+                      submit:(value){
+                        SellCubit.get(context).remainingPaymentFloatingActionButton(value!);
+                      },
+
+                      fillsColor: Colors.red[100],
+                      type: TextInputType.number),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 60,
+                  child: Text('مدفوع '),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                      backgroundColor: Colors.white,
+                      textColor: Colors.teal,
+                      text: '${SellCubit.get(context).remainingPayment}'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 60,
+                  child: Text('باقى '),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                CustomButton(
                     backgroundColor: Colors.white,
                     textColor: Colors.teal,
                     onPressed: () {},
                     text: 'موردجديد'),
+                SizedBox(
+                  width: 4,
+                ),
+                Expanded(
+                    child: Text('تسجيل فاتوره لحساب مورد')),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                child: DropdownButton(
+                  value: suppliersName,
+                  items: listSuppliersName!.map((option2) {
+                    return DropdownMenuItem(
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text("${option2['suppliersName']}")),
+                      value: option2['suppliersName'],
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      suppliersName = value.toString();
+                    });
+                  },
+                ),
               ),
-              SizedBox(
-                width: 4,
-              ),
-              Text('تسجيل فاتوره لحساب مورد'),
-            ],
-          ),
-          DropdownButton(
-            value: selectedOption2,
-            items: options2.map((option2) {
-              return DropdownMenuItem(
-                child: Text(option2),
-                value: option2,
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                selectedOption2 = value.toString();
-              });
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                      backgroundColor: Colors.white,
+                      textColor: Colors.teal,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      text: 'الغاء'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                CustomButton(
                     backgroundColor: Colors.white,
                     textColor: Colors.teal,
                     onPressed: () {
+
+                      SellCubit.get(context).InsertDatabaseDeferred(
+                          total: '${SellCubit.get(context).countallPriceSellFloatingActionButton}',
+                          tax:  '${SellCubit
+                              .get(context)
+                              .DarebaResult}',
+                          totalAfterTax:  '${SellCubit
+                              .get(context)
+                              .afterCalculateDarebaResult}',
+                          discount:  '${SellCubit
+                              .get(context)
+                              .discountPayment}',
+                          paid:   payController.text,
+                          remaining:  '${SellCubit
+                              .get(context)
+                              .remainingPayment}',
+
+
+                          supplier: suppliersName!);
                       Navigator.pop(context);
                     },
-                    text: 'الغاء'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              CustomButton(
-                  backgroundColor: Colors.white,
-                  textColor: Colors.teal,
-                  onPressed: () {},
-                  text: 'تسجيل عمليه الشراء'),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-        ],
-      );
-    });
+                    text: 'تسجيل عمليه الشراء'),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ) ;
+      },
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cache_repo/core/errors/exeptions.dart';
 import 'package:cache_repo/core/errors/failure.dart';
 import 'package:cache_repo/core/utils/dioHelper.dart';
-import 'package:cache_repo/features/sell/presentaion/views_models/managers/cubit/sell_cubit.dart';
+import 'package:cache_repo/features/buy/presentaion/views_models/managers/cubit/sell_cubit.dart';
 import 'package:cache_repo/features/store/data/fetch_products/FechProducts.dart';
 import 'package:cache_repo/features/store/presentaion/views_models/managers/cubit/states.dart';
 import 'package:dartz/dartz.dart';
@@ -298,19 +298,16 @@ class StoreCubit extends Cubit<StoreStates> {
          modelProduct = ModelProduct.fromJson(response.data);
          print(modelProduct.toString());
              emit((GetProductTreeSuccessState()));
-             print('ايوا ايوا ايوا ايو ا ايوا ايوا ');
 
 
          return right(modelProduct!);
       } else {
         emit((GetProductTreeErrorState()));
-        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
 
         throw ServerException(
             errorMessageModel: ErrorMessageModel.formJson(response.data));
       }
     } on ServerException catch (error) {
-        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
 
         emit((GetProductTreeErrorState()));
       return left(ServerFailure(error.errorMessageModel.status_message));

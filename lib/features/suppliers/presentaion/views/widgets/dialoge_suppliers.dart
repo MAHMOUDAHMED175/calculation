@@ -137,7 +137,7 @@ class _DialogeSuppliersState extends State<DialogeSuppliers> {
               height: 30,
             ),
             Text(
-              "رجاء اختيار اسم مندوب لحذفه",
+              "رجاء اختيار اسم مورد لحذفه",
               style: Styles.textStyle16,
             ),
             SizedBox(

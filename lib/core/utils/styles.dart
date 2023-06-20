@@ -1,5 +1,24 @@
 import 'package:flutter/material.dart';
 
+
+
+/*
+* appbar   20
+*
+*
+* title  25
+*
+*
+* title   20
+*
+* subtitle   15
+*
+* */
+
+
+
+
+
 abstract class Styles {
   static const textStyle12 = TextStyle(
     fontSize: 12,
