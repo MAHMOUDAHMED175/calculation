@@ -23,15 +23,17 @@ class Representative extends StatelessWidget {
             actionsAppBar: []),
       ),
 
-      body: Column(
-          children: [
+      body: SingleChildScrollView(
+        child: Column(
+            children: [
 
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: CardRepresentatives(),
-            ),
-          ],
-        ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: CardRepresentatives(),
+              ),
+            ],
+          ),
+      ),
     );
   }
 }

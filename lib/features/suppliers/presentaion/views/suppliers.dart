@@ -24,15 +24,17 @@ class Suppliers extends StatelessWidget {
             actionsAppBar: []),
       ),
 
-      body: Column(
-          children: [
+      body: SingleChildScrollView(
+        child: Column(
+            children: [
 
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: CardSuppliers(),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: CardSuppliers(),
+              ),
           ],
         ),
+      ),
     );
   }
 }

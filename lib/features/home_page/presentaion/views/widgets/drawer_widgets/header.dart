@@ -1,10 +1,20 @@
+import 'dart:io';
+
 import 'package:cache_repo/core/utils/colors.dart';
+import 'package:cache_repo/features/clients/presentaion/views_models/managers/cubit/clients_cubit.dart';
+import 'package:cache_repo/features/representatives/presentaion/views_models/managers/representatives_cubit.dart';
+import 'package:cache_repo/features/suppliers/presentaion/views_models/managers/cubit/supplires_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/styles.dart';
 
 Widget headerDrawer(BuildContext context) =>
-    SizedBox(
+    BlocConsumer<RepresentativesCubit, RepresentativesState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
+    return SizedBox(
       height: 450,
       child: Container(
           decoration: BoxDecoration(
@@ -31,7 +41,7 @@ Widget headerDrawer(BuildContext context) =>
                         child: CircleAvatar(
                           radius: MediaQuery.of(context).size.width * 0.1,
                           backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/images/money.jpg'),
+                          backgroundImage: FileImage(File(RepresentativesCubit.get(context).nowPersonRepresentative[0]['image'])),
                         ),
                       ),
                       SizedBox(
@@ -59,7 +69,7 @@ Widget headerDrawer(BuildContext context) =>
                 ),
                 child: TextButton.icon(
                   label: Text(
-                    'محمود مؤمن',
+                   "${RepresentativesCubit.get(context).nowPersonRepresentative[0]['representName']}",
                     style: Styles.textStyle16.copyWith(color: Colors.grey),
                   ),
                   icon: Icon(
@@ -90,7 +100,9 @@ Widget headerDrawer(BuildContext context) =>
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text(
-                          '33333 مورد',
+                          '${
+                         SuppliersCubit.get(context).suppliers.length
+                          } مورد',
                           style: Styles.textStyle18.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -118,7 +130,10 @@ Widget headerDrawer(BuildContext context) =>
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text(
-                          '3333 عميل',
+                          '${
+                              ClientsCubit.get(context).clients.length
+
+                          } عميل',
                           style: Styles.textStyle18.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -146,7 +161,7 @@ Widget headerDrawer(BuildContext context) =>
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text(
-                          '2533333334.5 جنيه ',
+                           'جنيه 0',
                           style: Styles.textStyle18.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -169,3 +184,5 @@ Widget headerDrawer(BuildContext context) =>
           )
       ),
     );
+  },
+);

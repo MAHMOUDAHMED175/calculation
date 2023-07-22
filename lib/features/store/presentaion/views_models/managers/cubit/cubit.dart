@@ -9,8 +9,8 @@ import 'package:cache_repo/features/store/presentaion/views_models/managers/cubi
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart' as syspath;
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sqflite/sqflite.dart';
@@ -178,6 +178,25 @@ class StoreCubit extends Cubit<StoreStates> {
       emit(StoreGetDatabaseState());
     });
   }
+  void DeleteData({required int id1, context}) async {
+    await database.transaction((txn) async {
+      await txn.rawDelete('DELETE FROM store WHERE id = ?', [id1]);
+    }).then((value) {
+      getDatabase(database);
+      // Check if product[index] was removed from product list
+      if (!SellCubit.get(context).sellProduct.contains(product)) {
+        SellCubit.get(context).sellProduct = product;
+      }
+      emit(StoreDeleteDatabaseState());
+    });
+    // final db=await  databaseImages();
+    // db.transaction((txn) async {
+    //   await txn.rawDelete('DELETE FROM user_images WHERE id = ?', [id2]);
+    // }).then((value) {
+    //   getImages(db);
+    //   emit(deletImagesstate());
+    // });
+  }
 
   void updateData(
     String qrCode,
@@ -207,25 +226,6 @@ class StoreCubit extends Cubit<StoreStates> {
     });
   }
 
-  void DeleteData({required int id1, context}) async {
-    await database.transaction((txn) async {
-      await txn.rawDelete('DELETE FROM store WHERE id = ?', [id1]);
-    }).then((value) {
-      getDatabase(database);
-      // Check if product[index] was removed from product list
-      if (!SellCubit.get(context).sellProduct.contains(product)) {
-        SellCubit.get(context).sellProduct = product;
-      }
-      emit(StoreDeleteDatabaseState());
-    });
-    // final db=await  databaseImages();
-    // db.transaction((txn) async {
-    //   await txn.rawDelete('DELETE FROM user_images WHERE id = ?', [id2]);
-    // }).then((value) {
-    //   getImages(db);
-    //   emit(deletImagesstate());
-    // });
-  }
 
   ///database sqllite
 

@@ -17,6 +17,14 @@ class RepresentativestakeSaveImageState extends RepresentativesState {}
 class RepresentativestakeSearchNameState extends RepresentativesState {}
 
 
+
+
+
+
+
+class RepresentativesChooseRepresentState extends RepresentativesState {}
+
+
 ///database
 class RepresentativesCreateDatabaseState extends RepresentativesState{}
 class RepresentativesInsertDatabaseState extends RepresentativesState{}

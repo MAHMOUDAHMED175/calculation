@@ -91,6 +91,12 @@ class RepresentativesCubit extends Cubit<RepresentativesState> {
   late Database database;
   List<Map> represent = [];
 
+  List<Map> nowPersonRepresentative=[];
+
+  void chooseRepresent(int index) {
+    nowPersonRepresentative = [represent[index]];
+    emit(RepresentativesChooseRepresentState());
+  }
   void CreateDatabaseRepresent() {
     openDatabase(
       'representdb.db',

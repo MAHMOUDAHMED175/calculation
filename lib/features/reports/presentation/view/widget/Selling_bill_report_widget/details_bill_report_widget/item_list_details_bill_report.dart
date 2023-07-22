@@ -1,7 +1,5 @@
-import 'package:cache_repo/confg/app_route.dart';
 import 'package:cache_repo/features/reports/presentation/view/widget/Selling_bill_report_widget/dialoge_pill_selling_report_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../../core/widgets/custom_button.dart';
 
@@ -11,7 +9,7 @@ class ItemListDetailsBillReportSelling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         dialogPillSellingReportWidget(context);
       },
       child: Padding(

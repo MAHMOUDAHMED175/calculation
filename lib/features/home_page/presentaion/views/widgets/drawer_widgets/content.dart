@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../../confg/app_route.dart';
 import '../../../../../../core/utils/styles.dart';
 
 Widget contextDrawer(context) => Padding(
@@ -13,12 +15,18 @@ Widget contextDrawer(context) => Padding(
             onTap: () {
               // Navigation
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.dangerous),
-                Text('ارجاع فاتوره مبيعات', style: Styles.textStyle16)
-              ],
+            child: InkWell(
+              onTap: (){
+                GoRouter.of(context)
+                    .push(AppRoute.sellingBillReport);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.dangerous),
+                  Text('ارجاع فاتوره مبيعات', style: Styles.textStyle16)
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -27,6 +35,8 @@ Widget contextDrawer(context) => Padding(
           InkWell(
             onTap: () {
               // Navigation
+              GoRouter.of(context)
+                  .push(AppRoute.buyingBillReport);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,6 +52,8 @@ Widget contextDrawer(context) => Padding(
           InkWell(
             onTap: () {
               // Navigation
+              GoRouter.of(context)
+                  .push(AppRoute.sellingBillReport);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,6 +69,8 @@ Widget contextDrawer(context) => Padding(
           InkWell(
             onTap: () {
               // Navigation
+               GoRouter.of(context)
+                                .push(AppRoute.buyingBillReport);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,6 +86,7 @@ Widget contextDrawer(context) => Padding(
           InkWell(
             onTap: () {
               // Navigation
+              GoRouter.of(context).push(AppRoute.reportCompany);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +102,8 @@ Widget contextDrawer(context) => Padding(
           InkWell(
             onTap: () {
               // Navigation
-            },
+              GoRouter.of(context)
+                  .push(AppRoute.treasuryTransactionsReport);     },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

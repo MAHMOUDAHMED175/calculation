@@ -1,9 +1,7 @@
 import 'package:cache_repo/core/utils/colors.dart';
 import 'package:cache_repo/core/widgets/text_from_field_widget.dart';
-import 'package:cache_repo/features/expenses/presentation/views_models/managers/cubit/expenses_cubit.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 Widget dateDailyBuyingBillReport(BuildContext context,
     TextEditingController dateDailyBuyingBillReportController) {
@@ -27,8 +25,8 @@ Widget dateDailyBuyingBillReport(BuildContext context,
                     firstDate: DateTime.now(),
                     lastDate: DateTime.parse("2230-12-12"),
                   ).then((value) {
-                    dateDailyBuyingBillReportController.text = formatDate(
-                        value!, [yyyy, '-', mm, '-', dd]);
+                    dateDailyBuyingBillReportController.text =
+                        formatDate(value!, [yyyy, '-', mm, '-', dd]);
                     // BuyingBillReportCubit.get(context).DateOfDailyBuyingBillReport(dateDailyBuyingBillReportController.text);
                   });
                 },
