@@ -14,11 +14,7 @@ class DeferredPayment extends StatefulWidget {
 }
 
 class _DeferredPaymentState extends State<DeferredPayment> {
-  int selectedRadio = 0;
-
   List<String> options2 = ['اضغط لتحديد مورد', 'دفعd اجل', 'دفdع كاش'];
-
-  String? selectedOption;
 
   String? selectedOption2 = 'اضغط لتحديد مورد';
   var payController = TextEditingController();

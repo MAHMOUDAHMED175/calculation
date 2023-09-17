@@ -322,7 +322,6 @@ class StoreCubit extends Cubit<StoreStates> {
 
   Future<Either<Failure, FechProductsModel>> FechProducts() async {
       emit(GetFechProductsLoadingState());
-      print('لسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسسه');
 
       try {
       final response = await DioHelper.getData(url: '/products?limit=3&SortField=cost&SortType=desc');
@@ -330,19 +329,16 @@ class StoreCubit extends Cubit<StoreStates> {
          fechProductsModel = FechProductsModel.fromJson(response.data);
          print(fechProductsModel.toString());
              emit((GetProductTreeSuccessState()));
-             print('ايوا ايوا ايوا ايو ا ايوا ايوا ');
 
 
          return right(fechProductsModel!);
       } else {
         emit((GetFechProductsErrorState()));
-        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
 
         throw ServerException(
             errorMessageModel: ErrorMessageModel.formJson(response.data));
       }
     } on ServerException catch (error) {
-        print('لسسسغلط لغط غلط علط غلط غلط لغلط لغلط');
 
         emit((GetFechProductsErrorState()));
       return left(ServerFailure(error.errorMessageModel.status_message));
